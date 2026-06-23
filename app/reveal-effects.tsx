@@ -101,9 +101,9 @@ export default function RevealEffects() {
    */
   useEffect(() => {
     const NAT = 975 / 1614; // source image aspect ratio
-    const UPPER = { fx: 0.79, fy: 0.125 }; // raised right fist
-    const LOWER = { fx: 0.275, fy: 0.42 }; // lower left fist (nudged down to angle the rope)
-    const END_ABOVE_METRICS = 12; // px gap to leave above the metrics row
+    const UPPER = { fx: 0.8, fy: 0.125 }; // raised right fist
+    const LOWER = { fx: 0.285, fy: 0.48 }; // lower left fist (matched shift to keep angle)
+    const END_ABOVE_METRICS = 0; // px gap to leave above the metrics row
 
     function place() {
       const svg = document.querySelector<SVGSVGElement>(".hero-diagonal");

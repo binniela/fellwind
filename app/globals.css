@@ -45,6 +45,8 @@
   --gutter: clamp(20px, 6vw, 90px);
   --maxw: 1280px;
   --section-y: clamp(84px, 12vw, 172px);   /* generous, airy vertical rhythm */
+  --hero-line-top-gap: clamp(56px, 8.8dvh, 86px);
+  --hero-line-bottom-reach: clamp(56px, 8dvh, 96px);
 }
 
 * { box-sizing: border-box; }
@@ -161,7 +163,21 @@ input:focus-visible {
 /* =========================================================
    NAV
    ========================================================= */
-.site-nav { position: relative; z-index: 10; }
+.site-nav {
+  position: relative;
+  z-index: 10;
+}
+
+.site-nav::after {
+  content: "";
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
 .nav-inner {
   display: flex;
   align-items: center;
@@ -268,7 +284,7 @@ input:focus-visible {
 .hero-right { display: flex; flex-direction: column; align-items: flex-end; }
 .hero-photo {
   width: min(100%, 430px);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 862 / 1825;
   margin-top: 4px;
   background: transparent;
   overflow: visible;
@@ -276,21 +292,31 @@ input:focus-visible {
 
 .hero-photo img {
   filter: grayscale(1) contrast(1.2) brightness(0.97);
-  mix-blend-mode: multiply;
   object-fit: contain;
   object-position: 50% 50%;
   transform-origin: 50% 78%;
 }
 .hero-foot { width: min(100%, 430px); margin-top: clamp(20px, 2.4vw, 30px); }
 
-/* Long thin line over the whole hero; endpoint % live in the SVG (0..100 box). */
+/* Layout-drawn rope; endpoint % live in the SVG (0..100 box). */
 .hero-diagonal {
   position: absolute;
-  inset: 0;
+  top: calc(-1 * var(--hero-line-top-gap));
+  bottom: calc(-1 * var(--hero-line-bottom-reach));
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  height: calc(100% + var(--hero-line-top-gap) + var(--hero-line-bottom-reach));
   pointer-events: none;
   overflow: visible;
   z-index: 0;
 }
+.hero-diagonal-wide { display: none; }
+
+@media (min-width: 1800px) {
+  .hero-diagonal-default { display: none; }
+  .hero-diagonal-wide { display: block; }
+}
+
 .hero-title, .hero-right { position: relative; z-index: 1; }   /* text above the line */
 
 /* =========================================================
@@ -655,14 +681,14 @@ html.js [data-reveal-heading].is-visible {
 
   .hero-photo {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 862 / 1825;
     margin-top: 0;
   }
 
   .hero-foot {
     width: 26.5vw;
     margin-top: 3.45vw;
-    transform: translateX(-10.4vw);
+    transform: translateX(3.2vw);
   }
 
   .latest {
@@ -900,6 +926,8 @@ html.js [data-reveal-heading].is-visible {
     --gutter: 30px;
     --section-y: 32px;
     --line: rgba(22, 22, 22, 0.34);
+    --hero-line-top-gap: 25dvh;
+    --hero-line-bottom-reach: 25dvh;
   }
 
   body {
@@ -984,7 +1012,7 @@ html.js [data-reveal-heading].is-visible {
 
   .hero-photo {
     width: 157px;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 862 / 1825;
     margin-top: 0;
   }
 
@@ -994,11 +1022,18 @@ html.js [data-reveal-heading].is-visible {
     transform: translateX(-39px);
   }
 
-  .hero-diagonal line {
-    x1: 65;
-    y1: 15;
-    x2: 0;
-    y2: 96;
+  .hero-line-top {
+    x1: 62;
+    y1: 0;
+    x2: 52;
+    y2: 27;
+  }
+
+  .hero-line-bottom {
+    x1: 47;
+    y1: 42;
+    x2: 5;
+    y2: 100;
   }
 
   .latest {
@@ -1837,8 +1872,8 @@ textarea:focus-visible {
 
   /* Size the portrait image by height so it never blows past the fold */
   .hero-photo {
-    width: min(100%, calc(50dvh * 3 / 4));   /* => height ≈ 50dvh */
-    aspect-ratio: 3 / 4;
+    width: min(100%, calc(62dvh * 862 / 1825));   /* => height ≈ 62dvh */
+    aspect-ratio: 862 / 1825;
     margin-top: 0;
   }
 
