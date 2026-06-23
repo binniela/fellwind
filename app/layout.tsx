@@ -12,13 +12,22 @@ const display = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Fellwind — Brand systems with motion and memory",
+  metadataBase: new URL("https://fellwind.example.com"),
+  title: "Fellwind — Launches the market can't ignore",
   description:
-    "Fellwind is an editorial creative studio for identity, digital products, and launch systems with a point of view.",
+    "Fellwind is an editorial creative studio building identity systems and launch worlds that turn sharp products into the thing everyone's talking about. Book a free 30-minute call.",
+  openGraph: {
+    title: "Fellwind — Launches the market can't ignore",
+    description:
+      "Identity systems and launch worlds for sharp products. Book a free 30-minute call.",
+    type: "website",
+  },
 };
 
 export const viewport = {
   themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

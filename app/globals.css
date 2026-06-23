@@ -1292,6 +1292,7 @@ html.js [data-reveal-heading].is-visible {
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.4;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1416,4 +1417,250 @@ html.js [data-reveal-heading].is-visible {
   .logos-label { font-size: 11px; }
   .logos li { font-size: 15px; }
   .clients-result { font-size: 12px; }
+}
+
+/* =========================================================
+   PRODUCTION LAYER — a11y, contrast, forms, mobile menu
+   ========================================================= */
+
+/* ---- Contrast: bump greys to meet WCAG AA (4.5:1 on white) ---- */
+:root {
+  --muted: #6b6b6b;        /* was #8d8d8d (failed AA) */
+  --on-black: rgba(255, 255, 255, 0.78);
+}
+.copy { color: #5f5f5f; }
+.logos li { color: #8a8a8a; }   /* supplementary brand names */
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  transform: translateY(-160%);
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.2s var(--ease-out);
+}
+.skip-link:focus-visible { transform: translateY(0); outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- Screen-reader-only utility ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---- Stronger, consistent focus ring everywhere ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.footer a:focus-visible,
+.mobile-menu a:focus-visible { outline-color: #fff; }
+
+/* ---- Mobile menu (burger hidden until full nav collapses) ---- */
+.nav-burger { display: none; }
+.nav-burger.is-open span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.nav-burger.is-open span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+/* Keep the bar (and the X toggle) clickable above the overlay */
+.nav-inner { position: relative; z-index: 60; }
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  animation: menu-in 0.24s var(--ease-out);
+}
+.mobile-menu[hidden] { display: none; }
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.mobile-menu-links a:not(.btn) {
+  font-family: var(--serif);
+  font-size: 32px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.mobile-menu-links a:not(.btn):hover { color: var(--accent); }
+.mobile-menu-links .btn { margin-top: 8px; font-size: 15px; }
+@keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---- Booking / contact section ---- */
+.booking { padding-block: var(--section-y); }
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+.booking-title {
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 0.86;
+}
+.booking-copy {
+  margin-top: clamp(20px, 2.4vw, 30px);
+  max-width: 30ch;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.5;
+  color: #5f5f5f;
+}
+.booking-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(22px, 2.6vw, 36px);
+  background: #fff;
+}
+
+/* ---- Form ---- */
+.booking-form { display: flex; flex-direction: column; gap: clamp(16px, 1.8vw, 22px); }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.field input,
+.field textarea {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 10px;
+  padding: 12px 14px;
+  width: 100%;
+  transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+.field textarea { resize: vertical; min-height: 104px; line-height: 1.5; }
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] { border-color: var(--accent); }
+.field-error {
+  font-size: 12.5px;
+  color: #c0341a;            /* darker vermilion — AA on white */
+  font-weight: 500;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: #9a9a9a; }
+.booking-submit { align-self: flex-start; margin-top: 4px; }
+.booking-submit:disabled { opacity: 0.65; cursor: progress; }
+.booking-form .reassure { margin-top: 0; }
+
+.form-banner {
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 12%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  color: #a82d14;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+/* ---- Success state ---- */
+.form-success { text-align: left; }
+.form-success-mark {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+.form-success-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.6vw, 32px);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.form-success-copy { margin-top: 12px; font-size: 15px; line-height: 1.5; color: #5f5f5f; }
+.form-success .text-link { margin-top: 18px; cursor: pointer; background: none; border: 0; font-family: var(--sans); }
+
+/* ---- Reduced-motion: kill menu animation too ---- */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu, .skip-link { animation: none; transition: none; }
+}
+
+/* ---- Desktop sizing for new sections (vw scale) ---- */
+@media (min-width: 861px) {
+  .booking-title { font-size: 6vw; }
+  .booking-copy { font-size: 1.3vw; max-width: 30ch; }
+  .field label { font-size: 1vw; }
+  .field input, .field textarea { font-size: 1.15vw; }
+}
+
+/* ---- Tablet / miniature band: stack booking, keep form usable ---- */
+@media (max-width: 860px) {
+  .booking-grid { grid-template-columns: 1fr; gap: 20px; }
+  .booking-title { font-size: 34px; }
+  /* The form is a real interactive element — never shrink it to the
+     miniature scale. Lock readable sizes. */
+  .booking-copy { font-size: 14px; }
+  .field label { font-size: 13px; }
+  .field input, .field textarea { font-size: 15px; }
+  .field-error { font-size: 12.5px; }
+  .booking-submit { font-size: 13px; }
+  .booking-form .reassure { font-size: 12px; }
+}
+
+/* =========================================================
+   MOBILE READABILITY (<=520) — promote the miniature to a
+   real single-column phone layout. The 521–860 band keeps the
+   designed "preview" miniature; real phones get legible type.
+   ========================================================= */
+@media (max-width: 520px) {
+  body { font-size: 15px; line-height: 1.5; }
+
+  /* show the working burger, hide inline links */
+  .nav-burger { display: inline-flex; }
+  .nav-links { display: none; }
+
+  .copy { font-size: 14px; max-width: 38ch; line-height: 1.5; }
+  .hero-kicker { line-height: 1.35; }
+  .text-link { font-size: 13px; }
+
+  .services-intro { font-size: 13px; max-width: 30ch; line-height: 1.45; }
+  .service-row { font-size: 14px; }
+
+  .clients-quote { font-size: 16px; max-width: 32ch; line-height: 1.45; }
+  .clients-attrib { font-size: 13px; }
+
+  .newsletter-label { font-size: 13px; line-height: 1.45; }
+  .email-field input { font-size: 14px; }
+  .footer-cta-label { font-size: 13px; line-height: 1.4; }
+  .footer-bottom { font-size: 12px; }
+
+  .booking-title { font-size: 38px; }
+
+  /* The original design slides the testimonial photo up over the copy
+     (-124px). With legible mobile type the copy is taller, so that overlap
+     collides with the attribution — drop it to a clean stack on phones. */
+  .clients .container:last-child { margin-top: 18px; }
+  .clients-photo { aspect-ratio: 16 / 11; }
 }

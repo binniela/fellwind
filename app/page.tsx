@@ -1,18 +1,16 @@
-/* eslint-disable @next/next/no-img-element */
 // Editorial agency homepage — recreation of the reference layout.
 // Diagonal accent lines + the concentric sphere are inline SVG.
 
+import Image from "next/image";
 import RevealEffects from "./reveal-effects";
-import type { CSSProperties } from "react";
-
-type RevealStyle = CSSProperties & { "--reveal-delay"?: string };
+import SiteNav from "./site-nav";
+import ContactForm from "./contact-form";
 
 const HERO_IMAGE_SRC = "/assets/img/hero-cutout.png";
 const LATEST_PROJECTS_IMAGE_SRC = "/assets/img/latest-projects.jpg";
 const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
 
 // One primary action for the whole page: booking a call.
-// TODO: swap for your real scheduler (e.g. https://cal.com/fellwind or a Calendly link).
 const BOOKING_HREF = "#contact";
 const REASSURANCE = "Free 30-min call · No commitment · We reply within 24 hours";
 
@@ -83,36 +81,22 @@ export default function Home() {
   return (
     <>
       <RevealEffects />
+      <a className="skip-link" href="#top">Skip to content</a>
+
       {/* ================= NAV ================= */}
-      <header className="site-nav">
-        <div className="container nav-inner">
-          <a className="wordmark" href="#top" data-reveal style={{ "--reveal-delay": "0ms" } as RevealStyle}>Fellwind</a>
-          <div className="nav-right">
-            <nav className="nav-links" aria-label="Primary" data-reveal style={{ "--reveal-delay": "80ms" } as RevealStyle}>
-              <a href="#work">About</a>
-              <a href="#work">Work</a>
-              <a href="#contact">Contact</a>
-            </nav>
-            {/* Persistent primary CTA — visible at the top on every scroll position */}
-            <a className="btn btn-primary nav-cta" href={BOOKING_HREF} data-reveal style={{ "--reveal-delay": "120ms" } as RevealStyle}>Book a call</a>
-            <button className="nav-burger" aria-label="Open menu" data-reveal style={{ "--reveal-delay": "160ms" } as RevealStyle}>
-              <span /><span /><span />
-            </button>
-          </div>
-        </div>
-      </header>
+      <SiteNav />
 
       <main id="top">
         {/* ================= HERO ================= */}
-        <section className="hero">
+        <section className="hero" aria-labelledby="hero-title">
           <div className="container hero-grid">
             {/* Long thin line: starts right of the headline (near the image's
                 left edge) and runs down to the hero's bottom-left corner. */}
-            <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as RevealStyle}>
+            <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
               <line x1="61" y1="17" x2="0" y2="132" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
             </svg>
 
-            <h1 className="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as RevealStyle}>
+            <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
               <span className="hero-kicker">For sharp products with forgettable launches</span>
               <span className="line">Launches</span>
               <span className="line">the market</span>
@@ -121,15 +105,16 @@ export default function Home() {
             </h1>
 
             <div className="hero-right">
-              <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as RevealStyle}>
-                <img
+              <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
+                <Image
                   src={HERO_IMAGE_SRC}
-                  alt=""
-                  loading="eager"
-                  decoding="async"
+                  alt="A figure mid-stride in a sharp black suit"
+                  fill
+                  priority
+                  sizes="(max-width: 860px) 45vw, 42vw"
                 />
               </div>
-              <div className="hero-foot" data-reveal style={{ "--reveal-delay": "310ms" } as RevealStyle}>
+              <div className="hero-foot" data-reveal style={{ "--reveal-delay": "310ms" } as React.CSSProperties}>
                 <p className="copy">
                   We build identity systems and launch worlds that turn sharp
                   products into the thing everyone&apos;s talking about — in weeks,
@@ -166,8 +151,8 @@ export default function Home() {
               </li>
             </ul>
             <div className="logos" data-reveal>
-              <span className="logos-label">Trusted by teams at</span>
-              <ul>
+              <span className="logos-label" id="logos-label">Trusted by teams at</span>
+              <ul aria-labelledby="logos-label">
                 <li>Northbeam</li>
                 <li>Lumen</li>
                 <li>Kestrel</li>
@@ -179,26 +164,27 @@ export default function Home() {
         </section>
 
         {/* ================= LATEST PROJECTS ================= */}
-        <section className="latest" id="work">
+        <section className="latest" id="work" aria-labelledby="latest-head">
           <div className="container">
-            <h2 className="latest-head h-section" data-reveal-heading>
+            <h2 className="latest-head h-section" id="latest-head" data-reveal-heading>
               Latest<br />Projects
             </h2>
           </div>
           <div className="container">
             <div className="image-slot block-wide">
-              <img
+              <Image
                 src={LATEST_PROJECTS_IMAGE_SRC}
-                alt=""
+                alt="Recent project work — editorial brand and product design"
+                fill
                 loading="lazy"
-                decoding="async"
+                sizes="(max-width: 860px) 100vw, 84vw"
               />
             </div>
           </div>
         </section>
 
         {/* ================= WE WERE BOTH CREATIVES ================= */}
-        <section className="creatives">
+        <section className="creatives" id="approach" aria-labelledby="creatives-title">
           <div className="container">
             <div className="creatives-grid">
               {/* Diagonal scoped to the grid: upper-right (left of sphere) down
@@ -207,11 +193,11 @@ export default function Home() {
                 <line x1="84" y1="2" x2="14" y2="86" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
               </svg>
 
-            <h2 className="creatives-title" data-reveal-heading>
+              <h2 className="creatives-title" id="creatives-title" data-reveal-heading>
                 We were both<br />creatives
               </h2>
 
-              <div className="creatives-art" data-reveal>
+              <div className="creatives-art" aria-hidden="true" data-reveal>
                 <ConcentricSphere />
               </div>
             </div>
@@ -227,9 +213,9 @@ export default function Home() {
         </section>
 
         {/* ================= WHAT WE DO ================= */}
-        <section className="services">
+        <section className="services" aria-labelledby="services-title">
           <div className="container">
-            <h2 className="services-title" data-reveal-heading>
+            <h2 className="services-title" id="services-title" data-reveal-heading>
               What<br />We Do
             </h2>
             <p className="services-intro" data-reveal>
@@ -261,16 +247,16 @@ export default function Home() {
         </section>
 
         {/* ================= CLIENTS ================= */}
-        <section className="clients">
+        <section className="clients" aria-labelledby="clients-title">
           <div className="container">
-            <h2 className="clients-title" data-reveal-heading>
+            <h2 className="clients-title" id="clients-title" data-reveal-heading>
               What our<br />clients saying
             </h2>
-            <p className="clients-quote" data-reveal>
+            <blockquote className="clients-quote" data-reveal>
               “Fellwind translated a scattered product story into a launch system
               our sales team could actually use. Launch week beat our annual
               target in five days.”
-            </p>
+            </blockquote>
             <p className="clients-result" data-reveal>↑ 2.4× launch-week signups in the first month</p>
             <p className="clients-attrib" data-reveal>
               <b>Claus Jansson</b><br />
@@ -282,29 +268,50 @@ export default function Home() {
           </div>
           <div className="container">
             <div className="image-slot clients-photo">
-              <img
+              <Image
                 src={TESTIMONIAL_IMAGE_SRC}
-                alt=""
+                alt="Portrait of Claus Jansson, CEO and founder of Northbeam"
+                fill
                 loading="lazy"
-                decoding="async"
+                sizes="(max-width: 860px) 100vw, 84vw"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* ================= BOOKING / CONTACT ================= */}
+        <section className="booking" id="contact" aria-labelledby="booking-title">
+          <div className="container booking-grid">
+            <div className="booking-intro">
+              <h2 className="booking-title" id="booking-title" data-reveal-heading>
+                Let&apos;s build a<br />launch worth<br />watching
+              </h2>
+              <p className="booking-copy" data-reveal>
+                Tell us what you&apos;re shipping. We&apos;ll come back within 24 hours
+                with a couple of times for a free 30-minute call — no commitment,
+                no hard sell.
+              </p>
+            </div>
+            <div className="booking-card" data-reveal>
+              <ContactForm />
             </div>
           </div>
         </section>
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="footer" id="contact">
+      <footer className="footer">
         <div className="container">
           <div className="footer-top">
             <div className="newsletter">
               <a className="wordmark" href="#top">Fellwind</a>
-              <p className="newsletter-label">Field notes on launches, systems, and taste.</p>
-              {/* Placeholder form — wire up your own submit handler */}
-              <form className="email-field" action="#">
-                <input type="email" placeholder="Email" aria-label="Email" />
+              <p className="newsletter-label" id="newsletter-label">Field notes on launches, systems, and taste.</p>
+              {/* Newsletter — wire up your own submit handler / ESP */}
+              <form className="email-field" action="#" aria-labelledby="newsletter-label">
+                <label className="visually-hidden" htmlFor="newsletter-email">Email address</label>
+                <input id="newsletter-email" type="email" placeholder="Email" autoComplete="email" />
                 <button type="submit" aria-label="Subscribe">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
@@ -325,20 +332,20 @@ export default function Home() {
 
           <div className="footer-bottom">
             <p>© {year} Fellwind</p>
-            <div className="socials" aria-label="Social links">
-              <a href="#" aria-label="Facebook">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2c0-.6.4-1 1-1z" /></svg>
+            <nav className="socials" aria-label="Social links">
+              <a href="https://facebook.com" aria-label="Fellwind on Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2c0-.6.4-1 1-1z" /></svg>
               </a>
-              <a href="#" aria-label="X">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h2.7l-5.9 6.7L21 21h-5.4l-4.2-5.5L6.5 21H3.8l6.3-7.2L3 3h5.5l3.8 5.1L17.5 3zm-1 16h1.5L7.6 4.5H6L16.5 19z" /></svg>
+              <a href="https://x.com" aria-label="Fellwind on X">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h2.7l-5.9 6.7L21 21h-5.4l-4.2-5.5L6.5 21H3.8l6.3-7.2L3 3h5.5l3.8 5.1L17.5 3zm-1 16h1.5L7.6 4.5H6L16.5 19z" /></svg>
               </a>
-              <a href="#" aria-label="Instagram">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
+              <a href="https://instagram.com" aria-label="Fellwind on Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
               </a>
-              <a href="#" aria-label="LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
+              <a href="https://linkedin.com" aria-label="Fellwind on LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
               </a>
-            </div>
+            </nav>
           </div>
         </div>
       </footer>
