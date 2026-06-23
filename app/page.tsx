@@ -75,6 +75,67 @@ function ConcentricSphere({ size = 210 }: { size?: number }) {
   );
 }
 
+// FAQ content — concrete, buyer-intent questions. Answers double as the
+// FAQPage schema below, and AI engines can quote them directly. Each answer
+// weaves in an internal link between sections.
+type Faq = { q: string; text: string; link?: { phrase: string; href: string } };
+
+const FAQS: Faq[] = [
+  {
+    q: "Who is Fellwind?",
+    text:
+      "Fellwind is a brand and launch studio. We build identity systems, websites, and launch campaigns that help product companies ship launches people remember — 120+ launches shipped at a 4.9/5 average client rating. See what we do.",
+    link: { phrase: "what we do", href: "#services" },
+  },
+  {
+    q: "What does Fellwind do?",
+    text:
+      "We handle branding, art direction, web design and development, UI/UX, packaging, and launch strategy — the full system behind a standout launch. Browse recent projects.",
+    link: { phrase: "recent projects", href: "#work" },
+  },
+  {
+    q: "How fast can Fellwind launch my product?",
+    text:
+      "Most engagements run about 14 days from kickoff to launch, depending on scope. We work in focused sprints so momentum never stalls — here's how we work.",
+    link: { phrase: "how we work", href: "#approach" },
+  },
+  {
+    q: "Who does Fellwind work with?",
+    text:
+      "Founders, studios, and product teams with momentum — from pre-launch startups to established brands relaunching a product into a crowded market.",
+  },
+  {
+    q: "How do I start working with Fellwind?",
+    text:
+      "Book a free 30-minute call. It's no-commitment, and we reply within 24 hours with a couple of times that work.",
+    link: { phrase: "Book a free 30-minute call", href: "#contact" },
+  },
+];
+
+function FaqAnswer({ faq }: { faq: Faq }) {
+  if (!faq.link) return <>{faq.text}</>;
+  const [before, after] = faq.text.split(faq.link.phrase);
+  return (
+    <>
+      {before}
+      <a className="faq-link" href={faq.link.href}>
+        {faq.link.phrase}
+      </a>
+      {after}
+    </>
+  );
+}
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.text },
+  })),
+};
+
 export default function Home() {
   const year = new Date().getFullYear();
 
@@ -97,6 +158,7 @@ export default function Home() {
             </svg>
 
             <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
+              <span className="visually-hidden">Fellwind — </span>
               <span className="hero-kicker">For sharp products with forgettable launches</span>
               <span className="line">Launches</span>
               <span className="line">the market</span>
@@ -108,7 +170,7 @@ export default function Home() {
               <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
                 <Image
                   src={HERO_IMAGE_SRC}
-                  alt="A figure mid-stride in a sharp black suit"
+                  alt="Fellwind brand and launch studio — a figure mid-stride in a sharp black suit"
                   fill
                   priority
                   sizes="(max-width: 860px) 45vw, 42vw"
@@ -174,7 +236,7 @@ export default function Home() {
             <div className="image-slot block-wide">
               <Image
                 src={LATEST_PROJECTS_IMAGE_SRC}
-                alt="Recent project work — editorial brand and product design"
+                alt="Fellwind brand identity and product launch design work"
                 fill
                 loading="lazy"
                 sizes="(max-width: 860px) 100vw, 84vw"
@@ -213,7 +275,7 @@ export default function Home() {
         </section>
 
         {/* ================= WHAT WE DO ================= */}
-        <section className="services" aria-labelledby="services-title">
+        <section className="services" id="services" aria-labelledby="services-title">
           <div className="container">
             <h2 className="services-title" id="services-title" data-reveal-heading>
               What<br />We Do
@@ -270,7 +332,7 @@ export default function Home() {
             <div className="image-slot clients-photo">
               <Image
                 src={TESTIMONIAL_IMAGE_SRC}
-                alt="Portrait of Claus Jansson, CEO and founder of Northbeam"
+                alt="Claus Jansson, CEO and founder of Northbeam, a Fellwind launch client"
                 fill
                 loading="lazy"
                 sizes="(max-width: 860px) 100vw, 84vw"
@@ -279,8 +341,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ================= FAQ ================= */}
+        <section className="faq" id="faq" aria-labelledby="faq-title">
+          <div className="container">
+            <h2 className="faq-title" id="faq-title" data-reveal-heading>
+              Common questions<br />about Fellwind
+            </h2>
+            <dl className="faq-list" data-reveal>
+              {FAQS.map((faq) => (
+                <div className="faq-item" key={faq.q}>
+                  <dt className="faq-q">
+                    <h3>{faq.q}</h3>
+                  </dt>
+                  <dd className="faq-a">
+                    <FaqAnswer faq={faq} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
         {/* ================= BOOKING / CONTACT ================= */}
         <section className="booking" id="contact" aria-labelledby="booking-title">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
           <div className="container booking-grid">
             <div className="booking-intro">
               <h2 className="booking-title" id="booking-title" data-reveal-heading>
