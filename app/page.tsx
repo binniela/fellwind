@@ -154,7 +154,7 @@ export default function Home() {
             {/* Long thin line: starts right of the headline (near the image's
                 left edge) and runs down to the hero's bottom-left corner. */}
             <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
-              <line x1="61" y1="17" x2="0" y2="132" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <line x1="61" y1="17" x2="0" y2="102" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
             </svg>
 
             <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
@@ -214,13 +214,32 @@ export default function Home() {
             </ul>
             <div className="logos" data-reveal>
               <span className="logos-label" id="logos-label">Trusted by teams at</span>
-              <ul aria-labelledby="logos-label">
-                <li>Northbeam</li>
-                <li>Lumen</li>
-                <li>Kestrel</li>
-                <li>Halonyx</li>
-                <li>Verda</li>
-              </ul>
+              <div className="logos-marquee" aria-labelledby="logos-label">
+                <ul className="logos-track">
+                  <li>Northbeam</li>
+                  <li>Lumen</li>
+                  <li>Kestrel</li>
+                  <li>Halonyx</li>
+                  <li>Verda</li>
+                  <li>
+                    <a href="https://cesello.org/" target="_blank" rel="noreferrer">
+                      Cesello
+                    </a>
+                  </li>
+                </ul>
+                <ul className="logos-track" aria-hidden="true">
+                  <li>Northbeam</li>
+                  <li>Lumen</li>
+                  <li>Kestrel</li>
+                  <li>Halonyx</li>
+                  <li>Verda</li>
+                  <li>
+                    <a href="https://cesello.org/" tabIndex={-1}>
+                      Cesello
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -312,7 +331,7 @@ export default function Home() {
         <section className="clients" aria-labelledby="clients-title">
           <div className="container">
             <h2 className="clients-title" id="clients-title" data-reveal-heading>
-              What our<br />clients saying
+              What our<br />clients say
             </h2>
             <blockquote className="clients-quote" data-reveal>
               “Fellwind translated a scattered product story into a launch system
@@ -429,7 +448,7 @@ export default function Home() {
               <a href="https://instagram.com" aria-label="Fellwind on Instagram">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
               </a>
-              <a href="https://linkedin.com" aria-label="Fellwind on LinkedIn">
+              <a href="https://www.linkedin.com/company/fellwind" aria-label="Fellwind on LinkedIn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
               </a>
             </nav>

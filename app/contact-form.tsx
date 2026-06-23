@@ -164,6 +164,7 @@ export default function ContactForm() {
         )}
       </div>
 
+      <p className="booking-outcome">We&apos;ll reply with two available times.</p>
       <button type="submit" className="btn btn-primary booking-submit" disabled={status === "submitting"}>
         <span>{status === "submitting" ? "Sending…" : "Book my free call"}</span>
         {status !== "submitting" && (
