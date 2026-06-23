@@ -1326,7 +1326,7 @@ html.js [data-reveal-heading].is-visible {
 .metric-label { font-size: 13px; line-height: 1.35; color: var(--muted); }
 .logos {
   display: flex;
-  align-items: center;
+  align-items: baseline;                 /* label + names share one baseline */
   gap: clamp(16px, 3vw, 40px);
   margin-top: clamp(24px, 3vw, 40px);
   flex-wrap: wrap;
@@ -1338,7 +1338,15 @@ html.js [data-reveal-heading].is-visible {
   color: var(--muted);
   white-space: nowrap;
 }
-.logos ul { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(18px, 3.2vw, 46px); }
+/* names fill the remaining width and spread with even spacing */
+.logos ul {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: clamp(18px, 3.2vw, 46px);
+}
 .logos li {
   font-family: var(--serif);
   font-size: clamp(17px, 1.6vw, 23px);
