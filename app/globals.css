@@ -1723,3 +1723,66 @@ textarea:focus-visible {
   .faq-q h3 { font-size: 16px; }
   .faq-a { font-size: 14px; }
 }
+
+/* =========================================================
+   HERO FITS THE VIEWPORT — everything (nav + headline + subhead
+   + CTA) visible on landing, ~1 viewport tall with a sliver of the
+   next section as a scroll hint. Uses 100dvh so mobile browser bars
+   don't clip the CTA. Sizes are clamped against dvh so the type and
+   image scale DOWN on short screens (768px-tall laptops, phones)
+   instead of overflowing. Same layout, content, and hierarchy.
+   ========================================================= */
+
+/* ---- Desktop (width-driven vw layout) ---- */
+@media (min-width: 861px) {
+  /* Trim the airy nav padding on short screens (capped by dvh) */
+  .nav-inner {
+    padding-block: clamp(14px, 3.4dvh, 46px) clamp(10px, 2.2dvh, 28px);
+  }
+
+  .hero {
+    --nav-h: 12dvh;                                   /* approx nav height */
+    min-height: calc(100dvh - var(--nav-h) - 6dvh);  /* 6dvh sliver */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;       /* center the grid in the hero */
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-grid { align-items: start; }   /* top-align headline with image */
+
+  .hero-title {
+    font-size: min(10.7vw, 12dvh);     /* shrink on short screens */
+    line-height: 0.8;
+    margin-top: 0;                     /* override the push-down offset */
+  }
+  .hero-kicker { margin-bottom: clamp(8px, 1.4dvh, 18px); }
+
+  /* Size the portrait image by height so it never blows past the fold */
+  .hero-photo {
+    width: min(100%, calc(50dvh * 3 / 4));   /* => height ≈ 50dvh */
+    aspect-ratio: 3 / 4;
+    margin-top: 0;
+  }
+
+  .hero-foot {
+    margin-top: clamp(10px, 2.2dvh, 26px);
+  }
+}
+
+/* ---- Phones / small screens ---- */
+@media (max-width: 860px) {
+  .hero {
+    --nav-h: 8dvh;
+    min-height: calc(100dvh - var(--nav-h) - 5dvh);  /* 5dvh sliver */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .hero-title { font-size: min(40px, 7.4dvh); }
+  .hero-photo { max-height: 46dvh; }
+  .hero-photo img { object-fit: contain; }
+}
