@@ -10,7 +10,7 @@ import { useEffect } from "react";
  *         guaranteed to be rendered before the reveal begins.
  *
  * Scroll: IntersectionObserver targets section headings ([data-reveal-heading])
- *         and the hero group. Whole-section reveals are avoided — they're
+ *         and the hero group. Whole-section reveals are avoided - they're
  *         jarring on tall sections and feel like a template, not a product.
  *
  * All motion gated behind prefers-reduced-motion.
@@ -44,7 +44,7 @@ export default function RevealEffects() {
     }, 60);
 
     // Scroll reveals: fire when the element is 10% into the viewport from
-    // the bottom. rootMargin -10% means "well inside the screen" — the
+    // the bottom. rootMargin -10% means "well inside the screen" - the
     // heading is clearly visible before the animation completes.
     const io = new IntersectionObserver(
       (entries) => {

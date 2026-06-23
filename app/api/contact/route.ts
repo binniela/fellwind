@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 /**
  * Booking / contact endpoint.
  *
- * ⚠️ BACKEND WIRING REQUIRED — this route validates input and returns success,
+ * ⚠️ BACKEND WIRING REQUIRED - this route validates input and returns success,
  * but it does NOT yet deliver the message anywhere. To make it production-live,
  * replace the `// TODO: deliver` block with one of:
  *   - an email provider (Resend, Postmark, SendGrid)

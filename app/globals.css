@@ -1,5 +1,5 @@
 /* =========================================================
-   Fellwind — editorial agency, B&W Didone layout
+   Fellwind - editorial agency, B&W Didone layout
    ========================================================= */
 
 @font-face {
@@ -326,7 +326,7 @@ input:focus-visible {
   font-size: clamp(52px, 8.2vw, 114px);   /* nearly as dominant as the hero */
   line-height: 0.84;
 }
-/* sphere overlaps the right side of the headline (just past "both"), sitting high — fine-tune top */
+/* sphere overlaps the right side of the headline (just past "both"), sitting high - fine-tune top */
 .creatives-art { position: absolute; top: -6px; right: 0; z-index: 1; }
 .sphere {
   width: clamp(150px, 17vw, 210px);
@@ -355,7 +355,7 @@ input:focus-visible {
 .services { padding-block: var(--section-y); }
 .services-title { font-size: clamp(44px, 6.6vw, 92px); line-height: 0.84; }
 .services-intro {
-  margin-top: clamp(-104px, -6vw, -54px);   /* pull up beside the heading like reference — fine-tune */
+  margin-top: clamp(-104px, -6vw, -54px);   /* pull up beside the heading like reference - fine-tune */
   margin-left: 34%;
   max-width: 300px;
   font-size: 14px;
@@ -995,8 +995,8 @@ html.js [data-reveal-heading].is-visible {
   }
 
   .hero-diagonal line {
-    x1: 63;
-    y1: 17;
+    x1: 65;
+    y1: 15;
     x2: 0;
     y2: 96;
   }
@@ -1247,13 +1247,13 @@ html.js [data-reveal-heading].is-visible {
 }
 
 /* =========================================================
-   CONVERSION LAYER — primary CTA, proof + trust signals
+   CONVERSION LAYER - primary CTA, proof + trust signals
    Built on the existing tokens so the design language is intact:
    vermilion accent, serif numerals, Alliance sans, pill motifs.
    ========================================================= */
 :root { --accent-press: #c8431f; }   /* pressed/hover vermilion */
 
-/* Primary button — unmistakably a button (solid pill, not a text link) */
+/* Primary button - unmistakably a button (solid pill, not a text link) */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1289,7 +1289,7 @@ html.js [data-reveal-heading].is-visible {
   color: var(--muted);
 }
 
-/* Nav CTA — compact, persistent */
+/* Nav CTA - compact, persistent */
 .nav-cta { padding: 0.72em 1.2em; font-size: 12px; }
 
 /* Hero pain-point eyebrow (sits above the headline) */
@@ -1409,7 +1409,7 @@ html.js [data-reveal-heading].is-visible {
   }
 }
 
-/* ---- Services CTA band — aligned to the services list, not floating ---- */
+/* ---- Services CTA band - aligned to the services list, not floating ---- */
 .services-foot { display: flex; }
 .services-cta {
   display: flex;
@@ -1450,7 +1450,7 @@ html.js [data-reveal-heading].is-visible {
   .nav-cta { font-size: 1.05vw; padding: 0.78em 1.35em; }
   .reassure { font-size: 1.05vw; margin-top: 0.9vw; }
   .hero-kicker { font-size: 1.16vw; margin-bottom: 1.1vw; }
-  .hero-title { margin-top: 8.6vw; }   /* was 11.4vw — make room for the eyebrow */
+  .hero-title { margin-top: 8.6vw; }   /* was 11.4vw - make room for the eyebrow */
   .proof { padding-bottom: 6vw; }
   .metric { gap: 0.6vw; }
   .metric-num { font-size: 4.2vw; }
@@ -1480,10 +1480,10 @@ html.js [data-reveal-heading].is-visible {
   .clients-result { font-size: 5px; margin-top: 9px; margin-left: 72px; }
 }
 
-/* ---- Responsive: real phones — keep CTAs legible + tappable ---- */
+/* ---- Responsive: real phones - keep CTAs legible + tappable ---- */
 @media (max-width: 520px) {
   .btn { font-size: 12px; padding: 0.95em 1.5em; }
-  /* nav CTA stays compact — declared after .btn so it wins */
+  /* nav CTA stays compact - declared after .btn so it wins */
   .nav-cta { font-size: 11px; padding: 0.62em 1.05em; }
   .reassure { font-size: 11px; }
   .hero-kicker { font-size: 11px; margin-bottom: 12px; }
@@ -1497,7 +1497,7 @@ html.js [data-reveal-heading].is-visible {
 }
 
 /* =========================================================
-   PRODUCTION LAYER — a11y, contrast, forms, mobile menu
+   PRODUCTION LAYER - a11y, contrast, forms, mobile menu
    ========================================================= */
 
 /* ---- Contrast: bump greys to meet WCAG AA (4.5:1 on white) ---- */
@@ -1600,7 +1600,7 @@ textarea:focus-visible {
   line-height: 1.5;
   color: #5f5f5f;
 }
-/* Open editorial form — no boxy card; the underline fields carry it */
+/* Open editorial form - no boxy card; the underline fields carry it */
 .booking-card {
   border: 0;
   border-radius: 0;
@@ -1645,7 +1645,7 @@ textarea:focus-visible {
 .field textarea[aria-invalid="true"] { border-bottom-color: var(--accent); }
 .field-error {
   font-size: 12.5px;
-  color: #c0341a;            /* darker vermilion — AA on white */
+  color: #c0341a;            /* darker vermilion - AA on white */
   font-weight: 500;
 }
 .field input::placeholder,
@@ -1701,7 +1701,7 @@ textarea:focus-visible {
 @media (max-width: 860px) {
   .booking-grid { grid-template-columns: 1fr; gap: 20px; }
   .booking-title { font-size: 34px; }
-  /* The form is a real interactive element — never shrink it to the
+  /* The form is a real interactive element - never shrink it to the
      miniature scale. Lock readable sizes. */
   .booking-copy { font-size: 14px; }
   .field label { font-size: 13px; }
@@ -1712,8 +1712,8 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   MOBILE READABILITY (<=520) — promote the miniature to a
-   real single-column phone layout. The 521–860 band keeps the
+   MOBILE READABILITY (<=520) - promote the miniature to a
+   real single-column phone layout. The 521-860 band keeps the
    designed "preview" miniature; real phones get legible type.
    ========================================================= */
 @media (max-width: 520px) {
@@ -1742,13 +1742,13 @@ textarea:focus-visible {
 
   /* The original design slides the testimonial photo up over the copy
      (-124px). With legible mobile type the copy is taller, so that overlap
-     collides with the attribution — drop it to a clean stack on phones. */
+     collides with the attribution - drop it to a clean stack on phones. */
   .clients .container:last-child { margin-top: 18px; }
   .clients-photo { aspect-ratio: 16 / 11; }
 }
 
 /* =========================================================
-   FAQ — editorial hairline list (matches the services list)
+   FAQ - editorial hairline list (matches the services list)
    ========================================================= */
 .faq { padding-block: clamp(40px, 6vw, 92px); }   /* tightened from --section-y */
 .faq-title { font-size: clamp(34px, 5vw, 72px); line-height: 0.9; }
@@ -1801,7 +1801,7 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   HERO FITS THE VIEWPORT — everything (nav + headline + subhead
+   HERO FITS THE VIEWPORT - everything (nav + headline + subhead
    + CTA) visible on landing, ~1 viewport tall with a sliver of the
    next section as a scroll hint. Uses 100dvh so mobile browser bars
    don't clip the CTA. Sizes are clamped against dvh so the type and
@@ -1864,7 +1864,7 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   DESIGN AUDIT FIXES — preserve the editorial language while
+   DESIGN AUDIT FIXES - preserve the editorial language while
    removing places that read as accidental on mobile.
    ========================================================= */
 
@@ -2006,4 +2006,235 @@ textarea:focus-visible {
 
 .footer-bottom .socials a:hover {
   color: var(--accent);
+}
+
+/* Final spacing polish. */
+.footer-cta .cta-group {
+  margin-top: clamp(30px, 3vw, 46px);
+}
+
+.footer-bottom {
+  padding-block: clamp(34px, 3vw, 54px) clamp(46px, 4vw, 72px);
+}
+
+@media (min-width: 861px) {
+  .hero {
+    min-height: calc(100dvh - var(--nav-h) - 3dvh);
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-cta .cta-group {
+    margin-top: 28px;
+  }
+
+  .footer-bottom {
+    padding-block: 28px 42px;
+  }
+}
+
+/* Hero composition nudge requested after visual review. */
+@media (min-width: 861px) {
+  .hero-grid {
+    transform: translateY(clamp(28px, 3dvh, 48px));
+  }
+
+  .hero-right {
+    transform: translateX(clamp(28px, 3.4vw, 64px));
+  }
+
+  .proof {
+    padding-top: clamp(36px, 3vw, 54px);
+  }
+}
+
+/* Reference-inspired footer composition. */
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer .container {
+  position: relative;
+}
+
+.footer-top {
+  grid-template-columns: minmax(250px, 0.95fr) minmax(360px, 1.35fr) minmax(360px, 1.1fr);
+  gap: clamp(34px, 6vw, 96px);
+  align-items: start;
+  padding-block: clamp(70px, 7vw, 118px) clamp(54px, 5vw, 82px);
+}
+
+.footer-socials {
+  margin-top: clamp(26px, 3vw, 42px);
+}
+
+.footer-socials a {
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.footer-socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-socials svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: clamp(28px, 4vw, 70px);
+}
+
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footer-links h3 {
+  margin: 0 0 4px;
+  font-family: var(--sans);
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.footer-links a {
+  width: fit-content;
+  color: var(--on-black);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.25;
+  transition: color 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+.footer-links a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.footer-cta {
+  justify-self: start;
+}
+
+.footer-cta-title {
+  max-width: 7.5em;
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  min-height: 96px;
+  padding-block: clamp(26px, 3vw, 42px) clamp(88px, 7vw, 132px);
+  border-top-color: rgba(255, 255, 255, 0.38);
+}
+
+.footer-legal {
+  display: flex;
+  gap: clamp(24px, 4vw, 70px);
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.86);
+  transition: color 220ms var(--ease-out);
+}
+
+.footer-legal a:hover {
+  color: var(--accent);
+}
+
+.footer-ghost {
+  position: absolute;
+  left: 50%;
+  bottom: -0.28em;
+  transform: translateX(-50%);
+  z-index: 0;
+  width: max-content;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(120px, 21vw, 340px);
+  font-weight: 600;
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+  color: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 860px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .footer-cta {
+    order: 2;
+  }
+
+  .footer-links {
+    order: 1;
+  }
+
+  .newsletter {
+    order: 3;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-top {
+    padding-block: 50px 38px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 36px;
+  }
+
+  .footer-socials {
+    gap: 10px;
+  }
+
+  .footer-socials a {
+    width: 38px;
+    height: 38px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding-bottom: 88px;
+  }
+
+  .footer-legal {
+    gap: 22px;
+    font-size: 12px;
+  }
+
+  .footer-ghost {
+    left: 30px;
+    transform: none;
+    font-size: 116px;
+    bottom: -0.18em;
+  }
 }

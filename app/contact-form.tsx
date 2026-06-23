@@ -82,7 +82,7 @@ export default function ContactForm() {
     return (
       <div className="form-success" role="status" aria-live="polite">
         <p className="form-success-mark" aria-hidden="true">✓</p>
-        <h3 className="form-success-title">Thanks — we&apos;ve got it.</h3>
+        <h3 className="form-success-title">Thanks, we&apos;ve got it.</h3>
         <p className="form-success-copy">
           We reply within 24 hours with a couple of times for your free 30-minute call.
         </p>

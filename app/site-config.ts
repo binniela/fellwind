@@ -3,7 +3,7 @@
 //
 // ⚠️ BEFORE LAUNCH:
 //   1. Set SITE_URL to your real production domain (must contain "fellwind").
-//   2. Replace the SOCIALS URLs with your actual profile links — these become
+//   2. Replace the SOCIALS URLs with your actual profile links - these become
 //      the schema `sameAs` array that tells Google your brand identity.
 
 export const SITE_URL = "https://fellwind.com"; // TODO: set to your real domain
@@ -12,7 +12,7 @@ export const SITE_NAME = "Fellwind";
 export const SITE_TAGLINE = "Brand & Launch Studio for Product Companies";
 
 export const SITE_DESCRIPTION =
-  "Fellwind is a brand and launch studio building identity systems and launch campaigns for product companies — 120+ launches shipped, 4.9/5 average client rating.";
+  "Fellwind is a brand and launch studio building identity systems and launch campaigns for product companies, with 120+ launches shipped and a 4.9/5 average client rating.";
 
 // TODO: replace with your real profile URLs before launch.
 export const SOCIALS = {

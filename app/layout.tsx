@@ -9,7 +9,7 @@ import {
   SAME_AS,
 } from "./site-config";
 
-// Display — closest free match to the reference's Canela/Ogg-like editorial serif.
+// Display - closest free match to the reference's Canela/Ogg-like editorial serif.
 // Playfair keeps the high contrast and refined oldstyle curves without Bodoni's rigidity.
 const display = Playfair_Display({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ const display = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    default: `${SITE_NAME} - ${SITE_TAGLINE}`,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: "/assets/img/latest-projects.jpg",
         width: 1200,
         height: 630,
-        alt: "Fellwind — brand and launch studio",
+        alt: "Fellwind - brand and launch studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     images: ["/assets/img/latest-projects.jpg"],
   },

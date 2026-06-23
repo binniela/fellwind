@@ -1,4 +1,4 @@
-// Editorial agency homepage — recreation of the reference layout.
+// Editorial agency homepage - recreation of the reference layout.
 // Diagonal accent lines + the concentric sphere are inline SVG.
 
 import Image from "next/image";
@@ -75,7 +75,7 @@ function ConcentricSphere({ size = 210 }: { size?: number }) {
   );
 }
 
-// FAQ content — concrete, buyer-intent questions. Answers double as the
+// FAQ content - concrete, buyer-intent questions. Answers double as the
 // FAQPage schema below, and AI engines can quote them directly. Each answer
 // weaves in an internal link between sections.
 type Faq = { q: string; text: string; link?: { phrase: string; href: string } };
@@ -84,25 +84,25 @@ const FAQS: Faq[] = [
   {
     q: "Who is Fellwind?",
     text:
-      "Fellwind is a brand and launch studio. We build identity systems, websites, and launch campaigns that help product companies ship launches people remember — 120+ launches shipped at a 4.9/5 average client rating. See what we do.",
+      "Fellwind is a brand and launch studio. We build identity systems, websites, and launch campaigns that help product companies ship launches people remember, with 120+ launches shipped at a 4.9/5 average client rating. See what we do.",
     link: { phrase: "what we do", href: "#services" },
   },
   {
     q: "What does Fellwind do?",
     text:
-      "We handle branding, art direction, web design and development, UI/UX, packaging, and launch strategy — the full system behind a standout launch. Browse recent projects.",
+      "We handle branding, art direction, web design and development, UI/UX, packaging, and launch strategy, the full system behind a standout launch. Browse recent projects.",
     link: { phrase: "recent projects", href: "#work" },
   },
   {
     q: "How fast can Fellwind launch my product?",
     text:
-      "Most engagements run about 14 days from kickoff to launch, depending on scope. We work in focused sprints so momentum never stalls — here's how we work.",
+      "Most engagements run about 14 days from kickoff to launch, depending on scope. We work in focused sprints so momentum never stalls. Here's how we work.",
     link: { phrase: "how we work", href: "#approach" },
   },
   {
     q: "Who does Fellwind work with?",
     text:
-      "Founders, studios, and product teams with momentum — from pre-launch startups to established brands relaunching a product into a crowded market.",
+      "Founders, studios, and product teams with momentum, from pre-launch startups to established brands relaunching a product into a crowded market.",
   },
   {
     q: "How do I start working with Fellwind?",
@@ -154,11 +154,11 @@ export default function Home() {
             {/* Long thin line: starts right of the headline (near the image's
                 left edge) and runs down to the hero's bottom-left corner. */}
             <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
-              <line x1="61" y1="17" x2="0" y2="102" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <line x1="64" y1="15" x2="0" y2="102" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
             </svg>
 
             <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
-              <span className="visually-hidden">Fellwind — </span>
+              <span className="visually-hidden">Fellwind, </span>
               <span className="hero-kicker">For sharp products with forgettable launches</span>
               <span className="line">Launches</span>
               <span className="line">the market</span>
@@ -170,7 +170,7 @@ export default function Home() {
               <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
                 <Image
                   src={HERO_IMAGE_SRC}
-                  alt="Fellwind brand and launch studio — a figure mid-stride in a sharp black suit"
+                  alt="Fellwind brand and launch studio with a figure mid-stride in a sharp black suit"
                   fill
                   priority
                   sizes="(max-width: 860px) 45vw, 42vw"
@@ -179,7 +179,7 @@ export default function Home() {
               <div className="hero-foot" data-reveal style={{ "--reveal-delay": "310ms" } as React.CSSProperties}>
                 <p className="copy">
                   We build identity systems and launch worlds that turn sharp
-                  products into the thing everyone&apos;s talking about — in weeks,
+                  products into the thing everyone&apos;s talking about in weeks,
                   not quarters.
                 </p>
                 <div className="cta-group">
@@ -318,12 +318,6 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="services-foot">
-              <div className="services-cta" data-reveal>
-                <CtaButton>Book a free call</CtaButton>
-                <p className="reassure">{REASSURANCE}</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -394,7 +388,7 @@ export default function Home() {
               </h2>
               <p className="booking-copy" data-reveal>
                 Tell us what you&apos;re shipping. We&apos;ll come back within 24 hours
-                with a couple of times for a free 30-minute call — no commitment,
+                with a couple of times for a free 30-minute call, no commitment,
                 no hard sell.
               </p>
             </div>
@@ -411,8 +405,22 @@ export default function Home() {
           <div className="footer-top">
             <div className="newsletter">
               <a className="wordmark" href="#top">Fellwind</a>
+              <nav className="socials footer-socials" aria-label="Social links">
+                <a href="https://facebook.com" aria-label="Fellwind on Facebook">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2c0-.6.4-1 1-1z" /></svg>
+                </a>
+                <a href="https://x.com" aria-label="Fellwind on X">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h2.7l-5.9 6.7L21 21h-5.4l-4.2-5.5L6.5 21H3.8l6.3-7.2L3 3h5.5l3.8 5.1L17.5 3zm-1 16h1.5L7.6 4.5H6L16.5 19z" /></svg>
+                </a>
+                <a href="https://instagram.com" aria-label="Fellwind on Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/fellwind" aria-label="Fellwind on LinkedIn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
+                </a>
+              </nav>
               <p className="newsletter-label" id="newsletter-label">Field notes on launches, systems, and taste.</p>
-              {/* Newsletter — wire up your own submit handler / ESP */}
+              {/* Newsletter - wire up your own submit handler / ESP */}
               <form className="email-field" action="#" aria-labelledby="newsletter-label">
                 <label className="visually-hidden" htmlFor="newsletter-email">Email address</label>
                 <input id="newsletter-email" type="email" placeholder="Email" autoComplete="email" />
@@ -423,6 +431,29 @@ export default function Home() {
                 </button>
               </form>
             </div>
+
+            <nav className="footer-links" aria-label="Footer navigation">
+              <div>
+                <h3>Menu</h3>
+                <a href="#top">Home</a>
+                <a href="#work">Work</a>
+                <a href="#approach">Approach</a>
+                <a href="#faq">FAQ</a>
+              </div>
+              <div>
+                <h3>Services</h3>
+                <a href="#services">Branding</a>
+                <a href="#services">Web Design</a>
+                <a href="#services">UI / UX</a>
+                <a href="#services">Strategy</a>
+              </div>
+              <div>
+                <h3>Connect</h3>
+                <a href="#contact">Book a Call</a>
+                <a href="mailto:hello@fellwind.com">Email</a>
+                <a href="https://www.linkedin.com/company/fellwind">LinkedIn</a>
+              </div>
+            </nav>
 
             <div className="footer-cta">
               <p className="footer-cta-label">For founders, studios, and teams with momentum.</p>
@@ -438,21 +469,12 @@ export default function Home() {
 
           <div className="footer-bottom">
             <p>© {year} Fellwind</p>
-            <nav className="socials" aria-label="Social links">
-              <a href="https://facebook.com" aria-label="Fellwind on Facebook">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2c0-.6.4-1 1-1z" /></svg>
-              </a>
-              <a href="https://x.com" aria-label="Fellwind on X">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h2.7l-5.9 6.7L21 21h-5.4l-4.2-5.5L6.5 21H3.8l6.3-7.2L3 3h5.5l3.8 5.1L17.5 3zm-1 16h1.5L7.6 4.5H6L16.5 19z" /></svg>
-              </a>
-              <a href="https://instagram.com" aria-label="Fellwind on Instagram">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
-              </a>
-              <a href="https://www.linkedin.com/company/fellwind" aria-label="Fellwind on LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
-              </a>
-            </nav>
+            <div className="footer-legal">
+              <a href="#faq">Terms</a>
+              <a href="#faq">Privacy Policy</a>
+            </div>
           </div>
+          <p className="footer-ghost" aria-hidden="true">Fellwind</p>
         </div>
       </footer>
     </>
