@@ -6,7 +6,7 @@ import RevealEffects from "./reveal-effects";
 import SiteNav from "./site-nav";
 import ContactForm from "./contact-form";
 
-const HERO_IMAGE_SRC = "/assets/img/hero-cutout.png";
+const HERO_IMAGE_SRC = "/assets/img/hero-user-rope-transparent.png";
 const LATEST_PROJECTS_IMAGE_SRC = "/assets/img/latest-projects.jpg";
 const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
 
@@ -151,10 +151,11 @@ export default function Home() {
         {/* ================= HERO ================= */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="container hero-grid">
-            {/* Long thin line: starts right of the headline (near the image's
-                left edge) and runs down to the hero's bottom-left corner. */}
+            {/* Layout-drawn rope: stops at the nav rule and runs down toward
+                the next section behind the transparent figure. */}
             <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
-              <line x1="64" y1="15" x2="0" y2="102" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <line className="hero-diagonal-default" x1="81.1" y1="5.33" x2="9.93" y2="94.79" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <line className="hero-diagonal-wide" x1="78.34" y1="4.6" x2="13.91" y2="93.4" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
             </svg>
 
             <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
@@ -170,7 +171,7 @@ export default function Home() {
               <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
                 <Image
                   src={HERO_IMAGE_SRC}
-                  alt="Fellwind brand and launch studio with a figure mid-stride in a sharp black suit"
+                  alt="Fellwind brand and launch studio figure hauling a taut diagonal line in an oversized black suit"
                   fill
                   priority
                   sizes="(max-width: 860px) 45vw, 42vw"
