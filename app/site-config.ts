@@ -12,7 +12,7 @@ export const SITE_NAME = "Fellwind";
 export const SITE_TAGLINE = "Brand & Launch Studio for Product Companies";
 
 export const SITE_DESCRIPTION =
-  "Fellwind is a brand and launch studio building identity systems and launch campaigns for product companies, with 120+ launches shipped and a 4.9/5 average client rating.";
+  "Fellwind is a brand and launch studio building identity systems and launch campaigns for product companies.";
 
 // TODO: replace with your real profile URLs before launch.
 export const SOCIALS = {

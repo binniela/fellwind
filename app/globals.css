@@ -265,7 +265,7 @@ input:focus-visible {
 /* =========================================================
    HERO
    ========================================================= */
-.hero { position: relative; padding-top: clamp(20px, 3vw, 40px); padding-bottom: var(--section-y); }
+.hero { position: relative; padding-top: clamp(20px, 3vw, 40px); padding-bottom: clamp(16px, 2vw, 30px); }
 .hero-grid {
   position: relative;
   display: grid;
@@ -283,8 +283,8 @@ input:focus-visible {
 
 .hero-right { display: flex; flex-direction: column; align-items: flex-end; }
 .hero-photo {
-  width: min(100%, 430px);
-  aspect-ratio: 862 / 1825;
+  width: 100%;
+  aspect-ratio: 1376 / 1143;   /* three-figure composite */
   margin-top: 4px;
   background: transparent;
   overflow: visible;
@@ -516,11 +516,11 @@ input:focus-visible {
 .footer-cta { justify-self: end; text-align: left; max-width: 420px; }
 .footer-cta-label { font-size: 13px; color: var(--on-black); }
 .footer-cta-title {
-  margin-top: 14px;
+  margin-top: 12px;
   color: #fff;
-  font-size: clamp(40px, 5.2vw, 74px);
-  line-height: 0.96;
-  letter-spacing: -0.015em;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 .footer-cta .text-link { color: #fff; border-color: #fff; margin-top: 22px; }
 
@@ -681,7 +681,7 @@ html.js [data-reveal-heading].is-visible {
 
   .hero-photo {
     width: 100%;
-    aspect-ratio: 862 / 1825;
+    aspect-ratio: 1376 / 1143;
     margin-top: 0;
   }
 
@@ -884,10 +884,10 @@ html.js [data-reveal-heading].is-visible {
   }
 
   .footer-cta-title {
-    margin-top: 1.85vw;
-    font-size: 8.24vw;
-    line-height: 0.86;
-    letter-spacing: -0.052em;
+    margin-top: 1vw;
+    font-size: 2.5vw;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
 
   .footer-cta .text-link {
@@ -1011,8 +1011,8 @@ html.js [data-reveal-heading].is-visible {
   }
 
   .hero-photo {
-    width: 157px;
-    aspect-ratio: 862 / 1825;
+    width: 100%;
+    aspect-ratio: 1376 / 1143;
     margin-top: 0;
   }
 
@@ -1870,11 +1870,14 @@ textarea:focus-visible {
   }
   .hero-kicker { margin-bottom: clamp(8px, 1.4dvh, 18px); }
 
-  /* Size the portrait image by height so it never blows past the fold */
+  /* Landscape three-figure composite: fill the column, cap height to the fold,
+     shifted left so the figures reach toward the headline (rope JS follows it) */
   .hero-photo {
-    width: min(100%, calc(62dvh * 862 / 1825));   /* => height ≈ 62dvh */
-    aspect-ratio: 862 / 1825;
+    width: 100%;
+    aspect-ratio: 1376 / 1143;
+    max-height: 62dvh;
     margin-top: 0;
+    left: clamp(-340px, -16vw, -200px);
   }
 
   .hero-foot {
@@ -2058,6 +2061,44 @@ textarea:focus-visible {
   }
 }
 
+/* Structured desktop nav: links and CTA share one control rhythm. */
+@media (min-width: 861px) {
+  .nav-inner {
+    --nav-control-h: clamp(46px, 5.2dvh, 58px);
+    --nav-control-font: clamp(13px, 1vw, 16px);
+    align-items: center;
+  }
+
+  .nav-right {
+    align-items: stretch;
+    gap: clamp(34px, 4vw, 64px);
+  }
+
+  .nav-links {
+    align-items: stretch;
+    gap: clamp(24px, 3.2vw, 48px);
+  }
+
+  .nav-links a,
+  .nav-cta {
+    min-height: var(--nav-control-h);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--nav-control-font);
+    line-height: 1;
+  }
+
+  .nav-links a {
+    padding-top: 0.12em;
+  }
+
+  .nav-cta {
+    min-width: clamp(142px, 10.8vw, 178px);
+    padding: 0 1.5em;
+  }
+}
+
 @media (max-width: 520px) {
   .footer-cta .cta-group {
     margin-top: 28px;
@@ -2079,39 +2120,158 @@ textarea:focus-visible {
   }
 
   .proof {
-    padding-top: clamp(36px, 3vw, 54px);
+    padding-top: clamp(14px, 1.4vw, 24px);
   }
 }
 
-/* Reference-inspired footer composition. */
+/* Premium hero pass: softer nav, tighter fold fit, reference-like rhythm. */
+@media (min-width: 861px) {
+  :root {
+    --line: rgba(22, 22, 22, 0.075);
+    --hero-line-top-gap: clamp(42px, 6.4dvh, 68px);
+    --hero-line-bottom-reach: clamp(42px, 6dvh, 72px);
+  }
+
+  .site-nav::after {
+    left: 0;
+    right: 0;
+    background: rgba(22, 22, 22, 0.065);
+  }
+
+  .nav-inner {
+    --nav-control-h: clamp(42px, 4.8dvh, 52px);
+    --nav-control-font: clamp(12px, 0.88vw, 14px);
+    padding-block: clamp(18px, 3dvh, 34px);
+  }
+
+  .wordmark {
+    font-size: clamp(26px, 2.55vw, 42px);
+  }
+
+  .nav-links {
+    gap: clamp(34px, 4.5vw, 72px);
+  }
+
+  .nav-right {
+    gap: clamp(42px, 5vw, 78px);
+  }
+
+  .nav-cta {
+    min-width: clamp(150px, 10.6vw, 180px);
+    padding-inline: 1.6em;
+  }
+
+  .hero {
+    --nav-h: clamp(80px, 9.5dvh, 112px);
+    min-height: calc(66dvh - var(--nav-h));
+    justify-content: start;
+    padding-top: clamp(30px, 6.3dvh, 70px);
+  }
+
+  .hero-grid {
+    grid-template-columns: 43.5% 47.5%;
+    column-gap: 9%;
+    transform: none;
+  }
+
+  .hero-title {
+    font-size: min(9.2vw, 10.2dvh);
+    line-height: 0.81;
+  }
+
+  .hero-kicker {
+    font-size: clamp(14px, 1.12vw, 21px);
+    line-height: 1.18;
+    margin-bottom: clamp(18px, 3.2dvh, 34px);
+    max-width: 28ch;
+  }
+
+  .hero-right {
+    transform: translateX(clamp(16px, 2.2vw, 40px));
+  }
+
+  .hero-photo {
+    max-height: min(54dvh, 520px);
+    left: clamp(-300px, -14vw, -176px);
+  }
+
+  .hero-foot {
+    width: min(31vw, 430px);
+    margin-top: clamp(20px, 3.1dvh, 34px);
+    transform: translateX(clamp(8px, 1vw, 18px));
+  }
+
+  .hero-foot .copy {
+    max-width: 31ch;
+    font-size: clamp(16px, 1.42vw, 25px);
+    line-height: 1.24;
+    color: #696969;
+  }
+
+  .hero-foot .cta-group {
+    margin-top: clamp(20px, 3dvh, 34px);
+  }
+
+  .hero-foot .btn {
+    font-size: clamp(14px, 1.15vw, 18px);
+    padding: 0.9em 1.65em;
+  }
+
+  .proof {
+    padding-top: clamp(20px, 2.4vw, 40px);
+  }
+}
+
+/* =========================================================
+   FOOTER - reference-matched composition
+   socials + contact (left), three link columns (right),
+   a full-width rule with a white pill CTA, a legal row, and
+   an oversized ghost wordmark cropped at the bottom edge.
+   ========================================================= */
 .footer {
   position: relative;
   overflow: hidden;
+  background: var(--black);
+  color: #fff;
 }
 
 .footer .container {
   position: relative;
+  z-index: 1;
 }
 
+/* ---- Top: contact block + link columns ---- */
 .footer-top {
-  grid-template-columns: minmax(250px, 0.95fr) minmax(360px, 1.35fr) minmax(360px, 1.1fr);
-  gap: clamp(34px, 6vw, 96px);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(440px, 1.5fr);
+  gap: clamp(40px, 7vw, 130px);
   align-items: start;
-  padding-block: clamp(70px, 7vw, 118px) clamp(54px, 5vw, 82px);
+  min-height: 0;                 /* override stray 32vw / 150px min-heights */
+  padding-block: clamp(44px, 4vw, 68px) clamp(24px, 2.4vw, 38px);
 }
 
+.footer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Circular outlined social buttons */
 .footer-socials {
-  margin-top: clamp(26px, 3vw, 42px);
+  display: flex;
+  gap: 14px;
 }
 
 .footer-socials a {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.88);
+  color: #fff;
+  transition: border-color 220ms var(--ease-out), color 220ms var(--ease-out),
+    transform 240ms var(--ease-out);
 }
 
 .footer-socials a:hover {
@@ -2121,37 +2281,65 @@ textarea:focus-visible {
 }
 
 .footer-socials svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 
+.footer-contact {
+  font-style: normal;
+  margin-top: clamp(26px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 26px);
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-contact p {
+  margin: 0;
+}
+
+.footer-contact a {
+  width: fit-content;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 220ms var(--ease-out);
+}
+
+.footer-contact a:hover {
+  color: var(--accent);
+}
+
+/* ---- Link columns: MENU / SHOP / CART rhythm ---- */
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(120px, 1fr));
-  gap: clamp(28px, 4vw, 70px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  justify-self: end;
+  width: 100%;
 }
 
 .footer-links div {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: clamp(11px, 1vw, 15px);
 }
 
 .footer-links h3 {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   font-family: var(--sans);
-  font-size: clamp(12px, 1vw, 15px);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
 }
 
 .footer-links a {
   width: fit-content;
-  color: var(--on-black);
+  color: rgba(255, 255, 255, 0.6);
   font-size: clamp(14px, 1.05vw, 16px);
-  line-height: 1.25;
+  line-height: 1.3;
   transition: color 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
 
@@ -2160,53 +2348,85 @@ textarea:focus-visible {
   transform: translateX(3px);
 }
 
-.footer-cta {
-  justify-self: start;
+/* ---- White pill CTA, right-aligned (no divider rule) ---- */
+.footer-mid {
+  position: relative;
+  margin-top: clamp(16px, 2vw, 28px);
+  display: flex;
+  justify-content: flex-end;
 }
 
-.footer-cta-title {
-  max-width: 7.5em;
+.footer-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--black);
+  border-radius: 999px;
+  padding: 0.85em 1.7em;
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 500;
+  line-height: 1;
+  transition: background 220ms var(--ease-out), color 220ms var(--ease-out),
+    transform 240ms var(--ease-out);
 }
 
+.footer-start:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+/* ---- Legal / blurb row ---- */
 .footer-bottom {
   position: relative;
   z-index: 1;
-  min-height: 96px;
-  padding-block: clamp(26px, 3vw, 42px) clamp(88px, 7vw, 132px);
-  border-top-color: rgba(255, 255, 255, 0.38);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 60px);
+  background: transparent;
+  border-top: 0;
+  padding-block: clamp(20px, 2vw, 32px) clamp(96px, 9vw, 158px);
 }
 
-.footer-legal {
-  display: flex;
-  gap: clamp(24px, 4vw, 70px);
-  align-items: center;
+.footer-blurb {
+  max-width: 38ch;
+  margin: 0;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.footer-legal-link {
   text-transform: uppercase;
   letter-spacing: 0.04em;
-}
-
-.footer-legal a {
-  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(14px, 1vw, 16px);
+  color: #fff;
+  white-space: nowrap;
   transition: color 220ms var(--ease-out);
 }
 
-.footer-legal a:hover {
+.footer-legal-link:hover {
   color: var(--accent);
 }
 
+/* ---- Oversized ghost wordmark, cropped by the footer's overflow ---- */
 .footer-ghost {
   position: absolute;
   left: 50%;
-  bottom: -0.28em;
+  bottom: -0.12em;
   transform: translateX(-50%);
   z-index: 0;
-  width: max-content;
   margin: 0;
+  width: max-content;
   font-family: var(--sans);
-  font-size: clamp(120px, 21vw, 340px);
-  font-weight: 600;
-  letter-spacing: -0.08em;
-  line-height: 0.72;
-  color: rgba(255, 255, 255, 0.18);
+  font-weight: 700;
+  font-size: clamp(110px, 19vw, 280px);
+  letter-spacing: -0.05em;
+  line-height: 0.74;
+  color: rgba(255, 255, 255, 0.32);
+  white-space: nowrap;
   pointer-events: none;
   user-select: none;
 }
@@ -2218,58 +2438,50 @@ textarea:focus-visible {
   }
 
   .footer-links {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .footer-cta {
-    order: 2;
-  }
-
-  .footer-links {
-    order: 1;
-  }
-
-  .newsletter {
-    order: 3;
-  }
-}
-
-@media (max-width: 520px) {
-  .footer-top {
-    padding-block: 50px 38px;
-  }
-
-  .footer-links {
-    grid-template-columns: 1fr 1fr;
-    gap: 28px 36px;
-  }
-
-  .footer-socials {
-    gap: 10px;
-  }
-
-  .footer-socials a {
-    width: 38px;
-    height: 38px;
+    justify-self: stretch;
+    gap: 22px;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 18px;
-    padding-bottom: 88px;
-  }
-
-  .footer-legal {
-    gap: 22px;
-    font-size: 12px;
+    gap: 16px;
+    padding-bottom: clamp(110px, 26vw, 200px);
   }
 
   .footer-ghost {
-    left: 30px;
+    font-size: 30vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-top {
+    padding-block: 48px 32px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 32px;
+  }
+
+  .footer-socials a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-start {
+    position: static;
     transform: none;
-    font-size: 116px;
-    bottom: -0.18em;
+    margin-top: 18px;
+    align-self: flex-start;
+  }
+
+  .footer-mid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-start:hover {
+    transform: translateX(2px);
   }
 }

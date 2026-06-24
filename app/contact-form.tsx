@@ -173,7 +173,6 @@ export default function ContactForm() {
           </svg>
         )}
       </button>
-      <p className="reassure">Free 30-min call · No commitment · We reply within 24 hours</p>
     </form>
   );
 }

@@ -6,13 +6,12 @@ import RevealEffects from "./reveal-effects";
 import SiteNav from "./site-nav";
 import ContactForm from "./contact-form";
 
-const HERO_IMAGE_SRC = "/assets/img/hero-user-rope-transparent.png";
+const HERO_IMAGE_SRC = "/assets/img/hero-three-figures.png";
 const LATEST_PROJECTS_IMAGE_SRC = "/assets/img/latest-projects.jpg";
 const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
 
 // One primary action for the whole page: booking a call.
 const BOOKING_HREF = "#contact";
-const REASSURANCE = "Free 30-min call · No commitment · We reply within 24 hours";
 
 function ArrowIcon() {
   return (
@@ -84,7 +83,7 @@ const FAQS: Faq[] = [
   {
     q: "Who is Fellwind?",
     text:
-      "Fellwind is a brand and launch studio. We build identity systems, websites, and launch campaigns that help product companies ship launches people remember, with 120+ launches shipped at a 4.9/5 average client rating. See what we do.",
+      "Fellwind is a brand and launch studio. We build identity systems, websites, and launch campaigns that help product companies ship launches people remember. See what we do.",
     link: { phrase: "what we do", href: "#services" },
   },
   {
@@ -137,8 +136,6 @@ const faqJsonLd = {
 };
 
 export default function Home() {
-  const year = new Date().getFullYear();
-
   return (
     <>
       <RevealEffects />
@@ -153,9 +150,14 @@ export default function Home() {
           <div className="container hero-grid">
             {/* Layout-drawn rope: stops at the nav rule and runs down toward
                 the next section behind the transparent figure. */}
+            {/* One layout-drawn rope per figure; positioned in JS so each stays
+                locked to its lady's grip, the nav rule, and the metrics row. */}
             <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
-              <line className="hero-diagonal-default" x1="81.1" y1="5.33" x2="9.93" y2="94.79" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-              <line className="hero-diagonal-wide" x1="78.34" y1="4.6" x2="13.91" y2="93.4" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              {/* Ropes thicken left-to-right to echo the figures fading in from
+                  light to dark: thin (light lady) -> thicker (mid) -> thickest. */}
+              <line className="hero-rope" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <line className="hero-rope" stroke="var(--line)" strokeWidth="1.7" vectorEffect="non-scaling-stroke" />
+              <line className="hero-rope" stroke="var(--line)" strokeWidth="2.6" vectorEffect="non-scaling-stroke" />
             </svg>
 
             <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
@@ -171,10 +173,10 @@ export default function Home() {
               <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
                 <Image
                   src={HERO_IMAGE_SRC}
-                  alt="Fellwind brand and launch studio figure hauling a taut diagonal line in an oversized black suit"
+                  alt="Three Fellwind figures in oversized black suits hauling taut diagonal lines, building momentum left to right"
                   fill
                   priority
-                  sizes="(max-width: 860px) 45vw, 42vw"
+                  sizes="(max-width: 860px) 55vw, 50vw"
                 />
               </div>
               <div className="hero-foot" data-reveal style={{ "--reveal-delay": "310ms" } as React.CSSProperties}>
@@ -185,7 +187,6 @@ export default function Home() {
                 </p>
                 <div className="cta-group">
                   <CtaButton>Book a free call</CtaButton>
-                  <p className="reassure">{REASSURANCE}</p>
                 </div>
               </div>
             </div>
@@ -404,33 +405,23 @@ export default function Home() {
       <footer className="footer">
         <div className="container">
           <div className="footer-top">
-            <div className="newsletter">
-              <a className="wordmark" href="#top">Fellwind</a>
+            <div className="footer-info">
               <nav className="socials footer-socials" aria-label="Social links">
-                <a href="https://facebook.com" aria-label="Fellwind on Facebook">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2c0-.6.4-1 1-1z" /></svg>
+                <a href="https://instagram.com" aria-label="Fellwind on Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
                 </a>
                 <a href="https://x.com" aria-label="Fellwind on X">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h2.7l-5.9 6.7L21 21h-5.4l-4.2-5.5L6.5 21H3.8l6.3-7.2L3 3h5.5l3.8 5.1L17.5 3zm-1 16h1.5L7.6 4.5H6L16.5 19z" /></svg>
                 </a>
-                <a href="https://instagram.com" aria-label="Fellwind on Instagram">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.6" /><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" /></svg>
-                </a>
-                <a href="https://www.linkedin.com/company/fellwind" aria-label="Fellwind on LinkedIn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5v9h-3v-9h3zM5 4a1.8 1.8 0 110 3.6A1.8 1.8 0 015 4zm5.5 4.5h2.9v1.3c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.7 2 3.7 4.7v4.5h-3v-4c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2v4.1h-3v-9z" /></svg>
+                <a href="https://youtube.com" aria-label="Fellwind on YouTube">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z" /></svg>
                 </a>
               </nav>
-              <p className="newsletter-label" id="newsletter-label">Field notes on launches, systems, and taste.</p>
-              {/* Newsletter - wire up your own submit handler / ESP */}
-              <form className="email-field" action="#" aria-labelledby="newsletter-label">
-                <label className="visually-hidden" htmlFor="newsletter-email">Email address</label>
-                <input id="newsletter-email" type="email" placeholder="Email" autoComplete="email" />
-                <button type="submit" aria-label="Subscribe">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </form>
+              <address className="footer-contact">
+                <p>Studio 4, 120 Harbour Road<br />Dublin, Ireland</p>
+                <a href="mailto:hello@fellwind.com">info@fellwind.com</a>
+                <a href="tel:+35315550190">(+353) 1 555 0190</a>
+              </address>
             </div>
 
             <nav className="footer-links" aria-label="Footer navigation">
@@ -453,29 +444,25 @@ export default function Home() {
                 <a href="#contact">Book a Call</a>
                 <a href="mailto:hello@fellwind.com">Email</a>
                 <a href="https://www.linkedin.com/company/fellwind">LinkedIn</a>
+                <a href="#faq">Tutorials</a>
               </div>
             </nav>
+          </div>
 
-            <div className="footer-cta">
-              <p className="footer-cta-label">For founders, studios, and teams with momentum.</p>
-              <h2 className="footer-cta-title">
-                Ready to<br />work with us?
-              </h2>
-              <div className="cta-group">
-                <CtaButton>Book your free call</CtaButton>
-                <p className="reassure">{REASSURANCE}</p>
-              </div>
-            </div>
+          <div className="footer-mid">
+            <a className="footer-start" href="#contact">Get Started</a>
           </div>
 
           <div className="footer-bottom">
-            <p>© {year} Fellwind</p>
-            <div className="footer-legal">
-              <a href="#faq">Terms</a>
-              <a href="#faq">Privacy Policy</a>
-            </div>
+            <p className="footer-blurb">
+              From branding to launch, our team is here to elevate your product
+              and connect you with the audience it deserves.
+            </p>
+            <a className="footer-legal-link" href="#faq">Terms &amp; Conditions</a>
+            <a className="footer-legal-link" href="#faq">Privacy Policy</a>
           </div>
-          <p className="footer-ghost" aria-hidden="true">Fellwind</p>
+
+          <p className="footer-ghost" aria-hidden="true">fellwind</p>
         </div>
       </footer>
     </>

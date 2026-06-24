@@ -100,10 +100,16 @@ export default function RevealEffects() {
    * fist and the lower left fist, as fractions of the image.
    */
   useEffect(() => {
-    const NAT = 975 / 1614; // source image aspect ratio
-    const UPPER = { fx: 0.8, fy: 0.125 }; // raised right fist
-    const LOWER = { fx: 0.285, fy: 0.48 }; // lower left fist (matched shift to keep angle)
+    const NAT = 1376 / 1143; // source image aspect ratio (three-figure composite)
     const END_ABOVE_METRICS = 0; // px gap to leave above the metrics row
+
+    // One rope per figure: the raised right fist and the lower left fist of
+    // each lady, as fractions of the composite image (detected from the PNG).
+    const FIGURES = [
+      { upper: { fx: 0.35, fy: 0.451 }, lower: { fx: 0.17, fy: 0.709 } }, // left (light)
+      { upper: { fx: 0.637, fy: 0.267 }, lower: { fx: 0.459, fy: 0.522 } }, // middle
+      { upper: { fx: 0.898, fy: 0.101 }, lower: { fx: 0.727, fy: 0.346 } }, // right (black)
+    ];
 
     function place() {
       const svg = document.querySelector<SVGSVGElement>(".hero-diagonal");
@@ -138,25 +144,26 @@ export default function RevealEffects() {
       const dLeft = s.left + (s.width - dW) / 2;
       const dTop = s.top + (s.height - dH) / 2;
 
-      const upper = { x: dLeft + UPPER.fx * dW, y: dTop + UPPER.fy * dH };
-      const lower = { x: dLeft + LOWER.fx * dW, y: dTop + LOWER.fy * dH };
-      if (lower.y === upper.y) return;
-
       const navBottom = nav.getBoundingClientRect().bottom;
       const metricsTop = metrics.getBoundingClientRect().top;
-
-      // line through both fists, extended up to the nav rule and down to just
-      // above the metrics row
-      const slope = (lower.x - upper.x) / (lower.y - upper.y);
       const topY = navBottom;
       const botY = metricsTop - END_ABOVE_METRICS;
-      const topX = upper.x + slope * (topY - upper.y);
-      const botX = upper.x + slope * (botY - upper.y);
 
       // viewport px -> the SVG's 0..100 viewBox (preserveAspectRatio="none")
       const toX = (px: number) => ((px - box.left) / w) * 100;
       const toY = (px: number) => ((px - box.top) / h) * 100;
-      lines.forEach((l) => {
+
+      // draw one rope per figure through both its fists, extended up to the nav
+      // rule and down to the metrics row
+      lines.forEach((l, i) => {
+        const fig = FIGURES[i];
+        if (!fig) return;
+        const upper = { x: dLeft + fig.upper.fx * dW, y: dTop + fig.upper.fy * dH };
+        const lower = { x: dLeft + fig.lower.fx * dW, y: dTop + fig.lower.fy * dH };
+        if (lower.y === upper.y) return;
+        const slope = (lower.x - upper.x) / (lower.y - upper.y);
+        const topX = upper.x + slope * (topY - upper.y);
+        const botX = upper.x + slope * (botY - upper.y);
         l.setAttribute("x1", toX(topX).toFixed(2));
         l.setAttribute("y1", toY(topY).toFixed(2));
         l.setAttribute("x2", toX(botX).toFixed(2));
