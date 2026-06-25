@@ -1358,29 +1358,19 @@ html.js [data-reveal-heading].is-visible {
   color: var(--muted);
   white-space: nowrap;
 }
-.logos-marquee {
+/* Static by default: three names held still so they read as claimed, not
+   padded. No auto-scroll — the proof shouldn't move past the eye. */
+.logos-row {
   flex: 1 1 0;
   min-width: 0;
   display: flex;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
-/* names loop gently to the right, like a clockwise dial around the proof band */
 .logos-track {
-  flex: 0 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: clamp(28px, 5vw, 76px);
-  min-width: 100%;
-  padding-right: clamp(28px, 5vw, 76px);
-  animation: trusted-spin 24s linear infinite;
-}
-
-.logos:hover .logos-track,
-.logos:focus-within .logos-track {
-  animation-play-state: paused;
 }
 
 .logos li {
@@ -1403,30 +1393,6 @@ html.js [data-reveal-heading].is-visible {
 .logos a:focus-visible {
   outline-color: var(--accent);
   outline-offset: 5px;
-}
-
-@keyframes trusted-spin {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logos-marquee {
-    flex-wrap: wrap;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .logos-track {
-    min-width: auto;
-    flex-wrap: wrap;
-    animation: none;
-  }
-
-  .logos-track[aria-hidden="true"] {
-    display: none;
-  }
 }
 
 /* ---- Services CTA band - aligned to the services list, not floating ---- */
@@ -1494,7 +1460,7 @@ html.js [data-reveal-heading].is-visible {
   .metric-label { font-size: 4.4px; }
   .logos { gap: 10px; margin-top: 14px; }
   .logos-label { font-size: 4px; }
-  .logos-track { gap: 12px; padding-right: 12px; }
+  .logos-track { gap: 12px; }
   .logos li { font-size: 7px; }
   .services-cta { gap: 10px; margin-top: 18px; }
   .clients-result { font-size: 5px; margin-top: 9px; margin-left: 72px; }

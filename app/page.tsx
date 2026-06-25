@@ -180,7 +180,7 @@ export default function Home() {
             </ul>
             <div className="logos" data-reveal>
               <span className="logos-label" id="logos-label">Trusted by teams at</span>
-              <div className="logos-marquee" aria-labelledby="logos-label">
+              <div className="logos-row" aria-labelledby="logos-label">
                 <ul className="logos-track">
                   <li>
                     <a href="https://cesello.org/" target="_blank" rel="noreferrer">
@@ -194,23 +194,6 @@ export default function Home() {
                   </li>
                   <li>
                     <a href="https://www.praxisot.app/" target="_blank" rel="noreferrer">
-                      Praxisot
-                    </a>
-                  </li>
-                </ul>
-                <ul className="logos-track" aria-hidden="true">
-                  <li>
-                    <a href="https://cesello.org/" tabIndex={-1}>
-                      Cesello
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.epoxycoatingco.com/" tabIndex={-1}>
-                      Socal Floor Coatings
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.praxisot.app/" tabIndex={-1}>
                       Praxisot
                     </a>
                   </li>
