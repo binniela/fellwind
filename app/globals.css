@@ -322,23 +322,164 @@ input:focus-visible {
 /* =========================================================
    LATEST PROJECTS
    ========================================================= */
-.latest { padding-bottom: var(--section-y); }
-.latest-head {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  font-size: clamp(36px, 5.6vw, 74px);
-  line-height: 0.86;
-  margin-bottom: clamp(-96px, -6.4vw, -60px);   /* block top cuts through lower half of "Projects" */
+.latest { padding-block: var(--section-y); }
+
+/* Top utility row: right-aligned 'view all'. */
+.latest-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: clamp(28px, 3vw, 44px);
 }
-.block-wide {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+.latest-all,
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.latest-all svg,
+.proj-link svg { width: 14px; height: 14px; transition: transform 360ms var(--ease-out); }
+.latest-all:hover svg,
+.proj-link:hover svg { transform: translate(3px, -3px); }
+
+/* Heading + intro sit on one baseline row. */
+.latest-head-row {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 72px);
+  margin-bottom: clamp(34px, 4vw, 60px);
+}
+.latest-head {
+  font-size: clamp(52px, 9vw, 116px);
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+}
+.latest-intro {
+  max-width: 22ch;
+  padding-bottom: 0.5em;
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.4;
+  color: var(--muted);
 }
 
-.block-wide img {
-  object-position: 52% 45%;
+/* Featured project: wide media + meta column. */
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.95fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(40px, 4vw, 60px);
 }
+.feature-media {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+}
+.feature-media img { object-position: 52% 42%; }
+.feature-meta {
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(6px, 1.6vw, 20px);
+}
+.proj-num {
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.proj-name {
+  margin-top: clamp(20px, 2.2vw, 30px);
+  font-family: var(--serif);
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.proj-tag {
+  margin-top: 14px;
+  font-size: clamp(14px, 1.05vw, 16px);
+  color: var(--muted);
+}
+.proj-rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: clamp(26px, 2.6vw, 36px) 0;
+}
+.proj-facts {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 26px);
+  margin: 0 0 clamp(30px, 3vw, 42px);
+}
+.proj-facts dt {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.proj-facts dd {
+  margin: 0;
+  font-size: clamp(14px, 1.05vw, 16px);
+  color: var(--ink);
+}
+.proj-link { margin-top: auto; }
+
+/* 02–05 grid. */
+.proj-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+.proj-card { display: flex; flex-direction: column; }
+.proj-card-media {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+.proj-card-media.is-placeholder {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 55%, #161616 100%);
+}
+.proj-card-foot {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  column-gap: 12px;
+  padding-top: clamp(14px, 1.4vw, 18px);
+  border-top: 1px solid var(--line);
+  margin-top: clamp(14px, 1.4vw, 18px);
+}
+.proj-card-foot .proj-num { grid-row: 1; }
+.proj-card-name {
+  grid-row: 1;
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.5vw, 21px);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.proj-card-tag {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 4px;
+  font-size: clamp(13px, 1vw, 14px);
+  color: var(--muted);
+}
+.proj-card-foot svg {
+  grid-column: 3;
+  grid-row: 1;
+  width: 14px;
+  height: 14px;
+  color: var(--ink);
+  transition: transform 360ms var(--ease-out);
+}
+.proj-card-foot:hover svg { transform: translate(3px, -3px); }
 
 /* =========================================================
    APPROACH
@@ -407,19 +548,31 @@ input:focus-visible {
 /* =========================================================
    CLIENTS
    ========================================================= */
-.clients { padding-bottom: clamp(36px, 5vw, 80px); }   /* tighten gap to FAQ */
-.clients-title { font-size: clamp(36px, 5.4vw, 72px); line-height: 0.88; }
+.clients { padding-bottom: clamp(40px, 5vw, 80px); overflow: hidden; }
+.clients-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.clients-copy {
+  padding-inline: var(--gutter);
+  padding-top: clamp(24px, 4vw, 40px);
+}
+.clients-title {
+  font-size: clamp(40px, 11vw, 72px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
 .clients-quote {
-  margin-top: clamp(26px, 3vw, 40px);
-  max-width: 520px;
-  font-size: clamp(15px, 1.4vw, 17px);
-  line-height: 1.6;
+  margin-top: clamp(22px, 3vw, 36px);
+  max-width: 30ch;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
   color: var(--body);
 }
-.clients-attrib { margin-top: 22px; font-size: 13px; line-height: 1.5; }
+.clients-attrib { margin-top: clamp(18px, 2.4vw, 28px); font-size: 14px; line-height: 1.5; }
 .clients-attrib b { color: var(--ink); font-weight: 600; }
 .clients-attrib span { color: var(--muted); }
-.dots { display: flex; gap: 9px; margin-top: 22px; }
+.dots { display: flex; gap: 9px; margin-top: clamp(18px, 2.4vw, 26px); }
 .dots i {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--block-mid);
@@ -427,14 +580,18 @@ input:focus-visible {
 }
 .dots i.active { background: var(--accent); }
 .dots:hover i.active { transform: scale(1.15); }
+/* Unboxed cutout — transparent PNG, no frame, figure may overflow. */
 .clients-photo {
-  margin-top: clamp(34px, 5vw, 60px);
+  position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  background: transparent;
 }
-
-.clients-photo img {
-  object-position: 54% 44%;
+.clients-cutout {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.04);
 }
 
 /* =========================================================
@@ -660,22 +817,6 @@ html.js [data-reveal-heading].is-visible {
     transform: translateX(3.2vw);
   }
 
-  .latest {
-    padding-bottom: 3.2vw;
-  }
-
-  .latest-head {
-    width: 24vw;
-    margin: 0 0 -4.4vw 33vw;   /* lift the heading clear of the pointing finger */
-    text-align: left;
-    font-size: 7.7vw;
-    line-height: 0.82;
-  }
-
-  .block-wide {
-    aspect-ratio: 321 / 246;
-  }
-
   .services {
     padding-block: 0 2.7vw;
   }
@@ -715,60 +856,57 @@ html.js [data-reveal-heading].is-visible {
     font-size: 2.9vw;
   }
 
-  .clients {
-    padding-bottom: 5.5vw;
+  .clients { padding-bottom: 0; }
+
+  /* Copy left (inset to the page gutter), photo bleeds to the right edge. */
+  .clients-grid {
+    grid-template-columns: minmax(0, 1fr) 46vw;
+    align-items: center;
+    column-gap: clamp(36px, 4vw, 80px);
+    min-height: min(88vh, 960px);
+  }
+
+  .clients-copy {
+    padding-top: 0;
+    padding-right: 0;
+    /* align the left edge with the 84vw centred container used elsewhere */
+    padding-left: max(var(--gutter), calc((100vw - var(--maxw)) / 2));
   }
 
   .clients-title {
-    width: 40vw;
-    margin-left: 19.15vw;
-    font-size: 7.98vw;
-    line-height: 0.82;
+    font-size: clamp(56px, 6.6vw, 100px);
+    line-height: 0.9;
   }
 
   .clients-quote {
-    max-width: 31vw;
-    margin-top: 6.9vw;
-    margin-left: 19.15vw;
-    font-size: 1.26vw;
-    line-height: 1.3;
+    max-width: 34ch;
+    margin-top: clamp(28px, 2.6vw, 40px);
+    font-size: clamp(17px, 1.35vw, 20px);
+    line-height: 1.5;
   }
 
   .clients-attrib {
-    margin-top: 2.4vw;
-    margin-left: 19.15vw;
-    font-size: 1.33vw;
-    line-height: 1.25;
-  }
-
-  .dots {
-    gap: 1.33vw;
-    margin-top: 2.1vw;
-    margin-left: 19.15vw;
-  }
-
-  .dots i {
-    width: 1.6vw;
-    height: 1.6vw;
-  }
-
-  .clients .container:first-child {
-    position: relative;
-    z-index: 1;
-  }
-
-  .clients .container:last-child {
-    margin-top: -25vw;   /* sit the photo lower so the quote/attribution clear it */
+    margin-top: clamp(24px, 2.2vw, 34px);
+    font-size: 15px;
   }
 
   .clients-photo {
-    margin-top: 0;
-    aspect-ratio: 321 / 284;
+    align-self: stretch;
+    position: relative;
+    width: 46vw;
+    height: 100%;
+    overflow: visible;
   }
 
-  /* keep the focal branch down-right, away from the testimonial copy */
-  .clients-photo img {
-    object-position: 64% 58%;
+  /* Figure floats free (no box); face bleeds off the right edge and the
+     cupped hand reaches left, clearing the headline. */
+  .clients-cutout {
+    position: absolute;
+    right: -12vw;
+    bottom: 4%;
+    height: 66%;
+    width: auto;
+    max-width: none;
   }
 
   .footer-top {
@@ -968,20 +1106,26 @@ html.js [data-reveal-heading].is-visible {
     y2: 100;
   }
 
-  .latest {
-    padding-bottom: 12px;
+  .latest-head-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
   }
 
   .latest-head {
-    width: 90px;
-    margin: 0 0 -31px 124px;
-    text-align: left;
-    font-size: 29px;
-    line-height: 0.82;
+    font-size: 46px;
   }
 
-  .block-wide {
-    aspect-ratio: 321 / 246;
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .feature-meta { padding-top: 4px; }
+
+  .proj-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 14px;
   }
 
   .services {
@@ -1023,55 +1167,12 @@ html.js [data-reveal-heading].is-visible {
     font-size: 11px;
   }
 
-  .clients {
-    padding-bottom: 33px;
-  }
-
   .clients-title {
-    width: 150px;
-    margin-left: 72px;
-    font-size: 30px;
-    line-height: 0.82;
-  }
-
-  .clients-quote {
-    max-width: 148px;
-    margin-top: 26px;
-    margin-left: 72px;
-    font-size: 4.8px;
-    line-height: 1.3;
-  }
-
-  .clients-attrib {
-    margin-top: 9px;
-    margin-left: 72px;
-    font-size: 5px;
-    line-height: 1.25;
-  }
-
-  .dots {
-    gap: 5px;
-    margin-top: 8px;
-    margin-left: 72px;
-  }
-
-  .dots i {
-    width: 6px;
-    height: 6px;
-  }
-
-  .clients .container:first-child {
-    position: relative;
-    z-index: 1;
-  }
-
-  .clients .container:last-child {
-    margin-top: -124px;
+    font-size: clamp(38px, 10vw, 56px);
   }
 
   .clients-photo {
-    margin-top: 0;
-    aspect-ratio: 321 / 284;
+    margin-top: clamp(20px, 5vw, 40px);
   }
 
   .footer-top {
@@ -1357,7 +1458,7 @@ html.js [data-reveal-heading].is-visible {
   .metric-label { font-size: 1.12vw; }
   .logos-label { font-size: 1vw; }
   .logos li { font-size: 1.6vw; }
-  .clients-result { font-size: 1.26vw; margin-top: 1.6vw; margin-left: 19.15vw; }
+  .clients-result { font-size: 1.26vw; margin-top: 1.6vw; }
 }
 
 /* ---- Responsive: <=860 miniature (px scale, matches the tuned system) ---- */
@@ -1377,7 +1478,7 @@ html.js [data-reveal-heading].is-visible {
   .logos-track { gap: 12px; }
   .logos li { font-size: 7px; }
   .services-cta { gap: 10px; margin-top: 18px; }
-  .clients-result { font-size: 5px; margin-top: 9px; margin-left: 72px; }
+  .clients-result { font-size: 13px; margin-top: 14px; }
 }
 
 /* ---- Responsive: real phones - keep CTAs legible + tappable ---- */
@@ -1639,12 +1740,6 @@ textarea:focus-visible {
   .footer-bottom { font-size: 12px; }
 
   .booking-title { font-size: 38px; }
-
-  /* The original design slides the testimonial photo up over the copy
-     (-124px). With legible mobile type the copy is taller, so that overlap
-     collides with the attribution - drop it to a clean stack on phones. */
-  .clients .container:last-child { margin-top: 18px; }
-  .clients-photo { aspect-ratio: 16 / 11; }
 }
 
 /* =========================================================
@@ -2080,47 +2175,101 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   FOOTER - reference-matched composition
-   socials + contact (left), three link columns (right),
-   a full-width rule with a white pill CTA, a legal row, and
-   an oversized ghost wordmark cropped at the bottom edge.
+   FOOTER - full-screen "spectacles" composition
+   The white frame PNG fills a centred stage; its lenses and
+   background are transparent so the black footer shows through.
+   Two content clusters are positioned inside the left and right
+   lens openings.
    ========================================================= */
-.footer {
-  position: relative;
-  overflow: hidden;
-  background: var(--black);
-  color: #fff;
+.footer { position: relative; background: #000; color: #fff; overflow: hidden; }
+
+.footer--glasses {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 64px);
 }
 
-.footer .container {
+/* Stage carries the exact aspect ratio of the glasses art so the
+   percentage-positioned lenses line up with the frame openings. */
+.footer-stage {
   position: relative;
+  width: 100%;
+  max-width: 1500px;
+  aspect-ratio: 1695 / 928;
+}
+
+.footer-glasses-img {
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---- Lens clusters ---- */
+.footer-lens {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   z-index: 1;
 }
 
-/* ---- Top: contact block + link columns ---- */
-.footer-top {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.85fr) minmax(440px, 1.5fr);
-  gap: clamp(40px, 7vw, 130px);
-  align-items: start;
-  min-height: 0;                 /* override stray 32vw / 150px min-heights */
-  padding-block: clamp(44px, 4vw, 68px) clamp(24px, 2.4vw, 38px);
+.footer-lens--left {
+  left: 11%;
+  width: 25%;
+  align-items: flex-start;
 }
 
-.footer-info {
+.footer-lens--right {
+  left: 62.5%;
+  width: 24%;
+}
+
+/* ---- Brand lockup ---- */
+.footer-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.32em;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2vw, 34px);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.footer-brand-slash { color: var(--accent); font-style: italic; }
+
+/* ---- Contact ---- */
+.footer-contact {
+  font-style: normal;
+  margin-top: clamp(18px, 2vw, 30px);
   display: flex;
   flex-direction: column;
+  gap: clamp(12px, 1.4vw, 20px);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
 }
+.footer-contact p { margin: 0; }
+.footer-contact a {
+  width: fit-content;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 220ms var(--ease-out);
+}
+.footer-contact a:hover { color: var(--accent); }
 
-/* Circular outlined social buttons */
+/* ---- Circular social buttons ---- */
 .footer-socials {
   display: flex;
-  gap: 14px;
+  gap: 12px;
+  margin-top: clamp(18px, 2vw, 30px);
 }
-
 .footer-socials a {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2130,217 +2279,119 @@ textarea:focus-visible {
   transition: border-color 220ms var(--ease-out), color 220ms var(--ease-out),
     transform 240ms var(--ease-out);
 }
-
 .footer-socials a:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-2px);
 }
+.footer-socials svg { width: 16px; height: 16px; }
 
-.footer-socials svg {
-  width: 17px;
-  height: 17px;
-}
-
-.footer-contact {
-  font-style: normal;
-  margin-top: clamp(26px, 3vw, 44px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 2vw, 26px);
-  font-size: clamp(15px, 1.1vw, 17px);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.footer-contact p {
-  margin: 0;
-}
-
-.footer-contact a {
-  width: fit-content;
-  color: rgba(255, 255, 255, 0.9);
-  transition: color 220ms var(--ease-out);
-}
-
-.footer-contact a:hover {
-  color: var(--accent);
-}
-
-/* ---- Link columns: MENU / SHOP / CART rhythm ---- */
+/* ---- Right lens: link columns ---- */
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 4vw, 64px);
-  justify-self: end;
-  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 36px);
 }
-
 .footer-links div {
   display: flex;
   flex-direction: column;
-  gap: clamp(11px, 1vw, 15px);
+  gap: clamp(5px, 0.5vw, 8px);
 }
-
 .footer-links h3 {
-  margin: 0 0 6px;
+  margin: 0 0 3px;
   font-family: var(--sans);
-  font-size: clamp(13px, 1vw, 16px);
+  font-size: clamp(12px, 0.9vw, 14px);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
 }
-
 .footer-links a {
   width: fit-content;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: clamp(14px, 1.05vw, 16px);
-  line-height: 1.3;
+  color: #fff;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.2;
   transition: color 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
+.footer-links a:hover { color: var(--accent); transform: translateX(3px); }
 
-.footer-links a:hover {
-  color: #fff;
-  transform: translateX(3px);
+/* ---- Blurb ---- */
+.footer-blurb {
+  /* The oval lens can't hold the blurb without crowding the corners, so it
+     is reserved for the stacked mobile footer (shown again below 860px). */
+  display: none;
+  max-width: 26ch;
+  margin: clamp(12px, 1.2vw, 18px) 0 0;
+  font-size: clamp(12px, 0.85vw, 14px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.62);
 }
 
-/* ---- White pill CTA, right-aligned (no divider rule) ---- */
-.footer-mid {
-  position: relative;
-  margin-top: clamp(16px, 2vw, 28px);
+/* ---- Legal + CTA baseline ---- */
+.footer-baseline {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  gap: clamp(14px, 1.4vw, 22px);
+  margin-top: clamp(12px, 1.2vw, 18px);
+  padding-top: clamp(10px, 1vw, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
-
+.footer-legal-link {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(11px, 0.85vw, 13px);
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  transition: color 220ms var(--ease-out);
+}
+.footer-legal-link:hover { color: var(--accent); }
 .footer-start {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  color: var(--black);
+  color: #000;
   border-radius: 999px;
-  padding: 0.85em 1.7em;
-  font-size: clamp(14px, 1vw, 16px);
+  padding: 0.7em 1.4em;
+  font-size: clamp(13px, 0.95vw, 15px);
   font-weight: 500;
   line-height: 1;
+  white-space: nowrap;
   transition: background 220ms var(--ease-out), color 220ms var(--ease-out),
     transform 240ms var(--ease-out);
 }
+.footer-start:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
 
-.footer-start:hover {
-  background: var(--accent);
-  color: #fff;
-  transform: translateX(2px);
-}
-
-/* ---- Legal / blurb row ---- */
-.footer-bottom {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: clamp(24px, 4vw, 60px);
-  background: transparent;
-  border-top: 0;
-  padding-block: clamp(20px, 2vw, 32px) clamp(96px, 9vw, 158px);
-}
-
-.footer-blurb {
-  max-width: 38ch;
-  margin: 0;
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.58);
-}
-
-.footer-legal-link {
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(14px, 1vw, 16px);
-  color: #fff;
-  white-space: nowrap;
-  transition: color 220ms var(--ease-out);
-}
-
-.footer-legal-link:hover {
-  color: var(--accent);
-}
-
-/* ---- Oversized ghost wordmark, cropped by the footer's overflow ---- */
-.footer-ghost {
-  position: absolute;
-  left: 50%;
-  bottom: -0.12em;
-  transform: translateX(-50%);
-  z-index: 0;
-  margin: 0;
-  width: max-content;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: clamp(110px, 19vw, 280px);
-  letter-spacing: -0.05em;
-  line-height: 0.74;
-  color: rgba(255, 255, 255, 0.32);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-}
-
+/* ---- Mobile: the lens layout can't hold real content; fall back to a
+   clean stacked footer with the glasses as a faint backdrop. ---- */
 @media (max-width: 860px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 42px;
+  .footer--glasses {
+    min-height: 0;
+    padding: clamp(48px, 12vw, 72px) var(--gutter) clamp(40px, 10vw, 64px);
   }
-
-  .footer-links {
-    justify-self: stretch;
-    gap: 22px;
-  }
-
-  .footer-bottom {
+  .footer-stage {
+    aspect-ratio: auto;
+    max-width: 520px;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding-bottom: clamp(110px, 26vw, 200px);
+    gap: 40px;
   }
-
-  .footer-ghost {
-    font-size: 30vw;
+  .footer-glasses-img {
+    object-fit: contain;
+    opacity: 0.14;
+    z-index: 0;
   }
-}
-
-@media (max-width: 520px) {
-  .footer-top {
-    padding-block: 48px 32px;
+  .footer-lens {
+    position: relative;
+    top: auto;
+    height: auto;
+    width: 100% !important;
+    left: auto !important;
+    justify-content: flex-start;
   }
-
-  .footer-links {
-    grid-template-columns: 1fr 1fr;
-    gap: 26px 32px;
-  }
-
-  .footer-socials a {
-    width: 40px;
-    height: 40px;
-  }
-
-  .footer-start {
-    position: static;
-    transform: none;
-    margin-top: 18px;
-    align-self: flex-start;
-  }
-
-  .footer-mid {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .footer-start:hover {
-    transform: translateX(2px);
-  }
+  .footer-blurb { display: block; }
+  .footer-baseline { flex-wrap: wrap; }
 }
 
 /* =========================================================
