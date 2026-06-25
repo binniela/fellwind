@@ -60,7 +60,7 @@ const FAQS: Faq[] = [
     q: "How fast can Fellwind launch my product?",
     text:
       "Most engagements run about 14 days from kickoff to launch, depending on scope. We work in focused sprints so momentum never stalls. Here's how we work.",
-    link: { phrase: "how we work", href: "#approach" },
+    link: { phrase: "how we work", href: "#faq" },
   },
   {
     q: "Who does Fellwind work with?",
@@ -223,26 +223,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================= APPROACH ================= */}
-        {/* The methodology slot. Big serif pointed at the 14-day claim. Same
-            velocity argument as the FAQ entry, phrased for this section. */}
-        <section className="approach" id="approach" aria-labelledby="approach-title">
-          <div className="container">
-            <p className="approach-kicker" data-reveal>How we work</p>
-            <h2 className="approach-title" id="approach-title" data-reveal-heading>
-              Kickoff to launch<br />in 14 days
-            </h2>
-            <p className="approach-intro" data-reveal>
-              One focused sprint, start to finish. We compress strategy,
-              identity, and launch assets into two weeks of continuous
-              momentum, so the work never stalls waiting on a handoff.
-            </p>
-
-            {/* TODO: optional process-diagram visual for the sprint. Left as
-                strong type-on-claim until a meaningful graphic is built. */}
-          </div>
-        </section>
-
         {/* ================= WHAT WE DO ================= */}
         <section className="services" id="services" aria-labelledby="services-title">
           <div className="container">
@@ -377,7 +357,7 @@ export default function Home() {
                 <h3>Menu</h3>
                 <a href="#top">Home</a>
                 <a href="#work">Work</a>
-                <a href="#approach">Approach</a>
+                <a href="#faq">Approach</a>
                 <a href="#faq">FAQ</a>
               </div>
               <div>

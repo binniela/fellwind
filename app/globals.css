@@ -343,27 +343,6 @@ input:focus-visible {
 /* =========================================================
    APPROACH
    ========================================================= */
-.approach { position: relative; padding-block: var(--section-y); }
-.approach-kicker {
-  font-family: var(--sans);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: clamp(18px, 2vw, 26px);
-}
-.approach-title {
-  max-width: 12ch;
-  font-size: clamp(52px, 8.2vw, 114px);   /* the brand move: big serif on the 14-day claim */
-  line-height: 0.84;
-}
-.approach-intro {
-  margin-top: clamp(22px, 2.4vw, 32px);
-  max-width: 46ch;
-  font-size: clamp(17px, 1.4vw, 21px);
-  line-height: 1.5;
-  color: var(--muted);
-}
 
 /* =========================================================
    WHAT WE DO
@@ -697,15 +676,6 @@ html.js [data-reveal-heading].is-visible {
     aspect-ratio: 321 / 246;
   }
 
-  .approach {
-    padding-block: 2.65vw 3.7vw;
-  }
-
-  .approach-title {
-    font-size: 11.44vw;
-    line-height: 0.79;
-  }
-
   .services {
     padding-block: 0 2.7vw;
   }
@@ -1012,15 +982,6 @@ html.js [data-reveal-heading].is-visible {
 
   .block-wide {
     aspect-ratio: 321 / 246;
-  }
-
-  .approach {
-    padding-block: 10px 14px;
-  }
-
-  .approach-title {
-    font-size: 43px;
-    line-height: 0.79;
   }
 
   .services {
@@ -2405,13 +2366,13 @@ textarea:focus-visible {
 .site-nav::after { opacity: 0; transition: opacity 240ms var(--ease-out); }
 .site-nav.is-scrolled::after { opacity: 1; }
 
-/* ~64px bar; condenses a touch on scroll. One control rhythm for links + CTA. */
+/* ~74px bar; condenses a touch on scroll. One control rhythm for links + CTA. */
 .nav-inner {
   --nav-control-h: 36px;
-  padding-block: 16.5px;
+  padding-block: 21.5px;
   transition: padding-block 240ms var(--ease-out);
 }
-.site-nav.is-scrolled .nav-inner { padding-block: 11px; }
+.site-nav.is-scrolled .nav-inner { padding-block: 16px; }
 
 /* Tighter, lower-key link spacing + casing. */
 .nav-links { gap: clamp(16px, 1.7vw, 26px); }

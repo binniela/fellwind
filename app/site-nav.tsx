@@ -6,7 +6,7 @@ const BOOKING_HREF = "#contact";
 
 const LINKS = [
   { href: "#work", label: "Work" },
-  { href: "#approach", label: "Approach" },
+  { href: "#faq", label: "Approach" },
   { href: "#contact", label: "Contact" },
 ];
 
