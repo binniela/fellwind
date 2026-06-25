@@ -1,5 +1,5 @@
 // Editorial agency homepage - recreation of the reference layout.
-// Diagonal accent lines + the concentric sphere are inline SVG.
+// Diagonal accent lines are inline SVG.
 
 import Image from "next/image";
 import RevealEffects from "./reveal-effects";
@@ -35,42 +35,6 @@ function CtaButton({
       <span>{children}</span>
       <ArrowIcon />
     </a>
-  );
-}
-
-function ConcentricSphere({ size = 210 }: { size?: number }) {
-  const arcs = [
-    { y: 156, rx: 83, ry: 83 },
-    { y: 162, rx: 74, ry: 74 },
-    { y: 168, rx: 65, ry: 65 },
-    { y: 174, rx: 56, ry: 56 },
-    { y: 180, rx: 47, ry: 47 },
-    { y: 186, rx: 38, ry: 38 },
-    { y: 192, rx: 29, ry: 29 },
-    { y: 198, rx: 20, ry: 20 },
-    { y: 204, rx: 11, ry: 11 },
-  ];
-
-  return (
-    <svg
-      className="sphere"
-      width={size}
-      height={size}
-      viewBox="0 0 220 220"
-      role="img"
-      aria-label="Concentric sphere graphic"
-    >
-      <circle cx="110" cy="110" r="96" fill="currentColor" />
-      <g fill="none" stroke="#fff" strokeWidth="6" strokeLinecap="round">
-        {arcs.map((arc) => (
-          <path
-            key={`${arc.y}-${arc.rx}`}
-            d={`M ${110 - arc.rx} ${arc.y} A ${arc.rx} ${arc.ry} 0 0 1 ${110 + arc.rx} ${arc.y}`}
-          />
-        ))}
-      </g>
-      <circle cx="110" cy="206" r="3.5" fill="#fff" />
-    </svg>
   );
 }
 
@@ -276,25 +240,56 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================= WE WERE BOTH CREATIVES ================= */}
-        <section className="creatives" id="approach" aria-labelledby="creatives-title">
+        {/* ================= APPROACH ================= */}
+        {/* The methodology slot. Big serif pointed at the 14-day claim, then a
+            sprint timeline that diagrams the process — days mapped to stages,
+            not abstract decoration. Same velocity argument as the FAQ entry,
+            phrased for this section. */}
+        <section className="approach" id="approach" aria-labelledby="approach-title">
           <div className="container">
-            <div className="creatives-grid">
-              {/* Diagonal scoped to the grid: upper-right (left of sphere) down
-                  past "creatives" to the lower-left. */}
-              <svg className="creatives-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="84" y1="2" x2="14" y2="86" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-              </svg>
+            <p className="approach-kicker" data-reveal>How we work</p>
+            <h2 className="approach-title" id="approach-title" data-reveal-heading>
+              Kickoff to launch<br />in 14 days
+            </h2>
+            <p className="approach-intro" data-reveal>
+              One focused sprint, start to finish. We compress strategy,
+              identity, and launch assets into two weeks of continuous
+              momentum, so the work never stalls waiting on a handoff.
+            </p>
 
-              <h2 className="creatives-title" id="creatives-title" data-reveal-heading>
-                We were both<br />creatives
-              </h2>
-
-              <div className="creatives-art" aria-hidden="true" data-reveal>
-                <ConcentricSphere />
-              </div>
-            </div>
-
+            {/* TODO: optional richer visual timeline graphic. The numbered
+                day-mapped sprint below is the meaningful process diagram. */}
+            <ol className="sprint" data-reveal>
+              <li className="sprint-step">
+                <span className="sprint-day">Days 1&ndash;3</span>
+                <span className="sprint-phase">Kickoff &amp; direction</span>
+                <span className="sprint-note">
+                  Positioning, the launch angle, and the one idea everything
+                  hangs on.
+                </span>
+              </li>
+              <li className="sprint-step">
+                <span className="sprint-day">Days 4&ndash;9</span>
+                <span className="sprint-phase">Build</span>
+                <span className="sprint-note">
+                  Identity, site, and launch assets in tight daily loops.
+                </span>
+              </li>
+              <li className="sprint-step">
+                <span className="sprint-day">Days 10&ndash;13</span>
+                <span className="sprint-phase">Launch prep</span>
+                <span className="sprint-note">
+                  Polish, QA, and the momentum plan for launch week.
+                </span>
+              </li>
+              <li className="sprint-step">
+                <span className="sprint-day">Day 14</span>
+                <span className="sprint-phase">Launch</span>
+                <span className="sprint-note">
+                  Ship the moment the market can&apos;t ignore.
+                </span>
+              </li>
+            </ol>
           </div>
         </section>
 

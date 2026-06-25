@@ -341,38 +341,66 @@ input:focus-visible {
 }
 
 /* =========================================================
-   WE WERE BOTH CREATIVES
+   APPROACH
    ========================================================= */
-.creatives { position: relative; padding-block: var(--section-y); }
-.creatives-grid { position: relative; }
-.creatives-title {
-  position: relative;
-  z-index: 1;
-  max-width: 72%;
-  font-size: clamp(52px, 8.2vw, 114px);   /* nearly as dominant as the hero */
+.approach { position: relative; padding-block: var(--section-y); }
+.approach-kicker {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: clamp(18px, 2vw, 26px);
+}
+.approach-title {
+  max-width: 12ch;
+  font-size: clamp(52px, 8.2vw, 114px);   /* the brand move: big serif on the 14-day claim */
   line-height: 0.84;
 }
-/* sphere overlaps the right side of the headline (just past "both"), sitting high - fine-tune top */
-.creatives-art { position: absolute; top: -6px; right: 0; z-index: 1; }
-.sphere {
-  width: clamp(150px, 17vw, 210px);
-  height: auto;
-  color: var(--black);
-  display: block;
+.approach-intro {
+  margin-top: clamp(22px, 2.4vw, 32px);
+  max-width: 46ch;
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.5;
+  color: var(--muted);
 }
-.creatives-foot { margin-top: clamp(34px, 4vw, 56px); margin-left: 44%; max-width: 340px; }
 
-/* Box spans the grid + extends below so the line runs past "creatives".
-   Endpoint % live in the SVG (0..100 box). FINE-TUNE height to taste. */
-.creatives-diagonal {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -6%;
-  height: clamp(230px, 30vw, 380px);
-  pointer-events: none;
-  overflow: visible;
-  z-index: 0;
+/* Sprint timeline: days mapped to stages — the process, drawn as type. */
+.sprint {
+  list-style: none;
+  margin: clamp(46px, 5vw, 72px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.4vw, 36px);
+  counter-reset: sprint;
+}
+.sprint-step {
+  position: relative;
+  padding-top: clamp(20px, 2vw, 28px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sprint-day {
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  font-size: clamp(13px, 1vw, 14px);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.sprint-phase {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.sprint-note {
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 /* =========================================================
@@ -707,41 +735,13 @@ html.js [data-reveal-heading].is-visible {
     aspect-ratio: 321 / 246;
   }
 
-  .creatives {
+  .approach {
     padding-block: 2.65vw 3.7vw;
   }
 
-  .creatives-title {
-    max-width: 61.7vw;
+  .approach-title {
     font-size: 11.44vw;
     line-height: 0.79;
-  }
-
-  .creatives-art {
-    top: 3.2vw;
-    right: 4.8vw;
-  }
-
-  .sphere {
-    width: 21.8vw;
-  }
-
-  .creatives-diagonal {
-    top: -1.85vw;
-    height: 41vw;
-  }
-
-  .creatives-diagonal line {
-    x1: 77;
-    y1: 0;
-    x2: 22;
-    y2: 100;
-  }
-
-  .creatives-foot {
-    max-width: 22.9vw;
-    margin-top: 12.2vw;
-    margin-left: 35.6vw;
   }
 
   .services {
@@ -1052,42 +1052,22 @@ html.js [data-reveal-heading].is-visible {
     aspect-ratio: 321 / 246;
   }
 
-  .creatives {
+  .approach {
     padding-block: 10px 14px;
   }
 
-  .creatives-title {
-    max-width: 232px;
+  .approach-title {
     font-size: 43px;
     line-height: 0.79;
   }
 
-  .creatives-art {
-    top: 12px;
-    right: 18px;
+  .sprint {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .sphere {
-    width: 82px;
-  }
-
-  .creatives-diagonal {
-    display: block;
-    top: -7px;
-    height: 154px;
-  }
-
-  .creatives-diagonal line {
-    x1: 77;
-    y1: 0;
-    x2: 22;
-    y2: 100;
-  }
-
-  .creatives-foot {
-    max-width: 86px;
-    margin-top: 46px;
-    margin-left: 134px;
+  .sprint-step {
+    padding-block: 22px;
   }
 
   .services {
@@ -1951,18 +1931,6 @@ textarea:focus-visible {
 
   .hero-foot .reassure {
     line-height: 1.35;
-  }
-
-  /* The creative paragraph was inheriting a miniature-width parent. Widen
-     the parent instead of shrinking the type, so it stays readable. */
-  .creatives-foot {
-    max-width: 190px;
-    margin-left: 132px;
-  }
-
-  .creatives-foot .copy {
-    max-width: 190px;
-    line-height: 1.45;
   }
 
   /* Pull the services intro onto the same visual grid as the heading/list. */
