@@ -365,44 +365,6 @@ input:focus-visible {
   color: var(--muted);
 }
 
-/* Sprint timeline: days mapped to stages — the process, drawn as type. */
-.sprint {
-  list-style: none;
-  margin: clamp(46px, 5vw, 72px) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(20px, 2.4vw, 36px);
-  counter-reset: sprint;
-}
-.sprint-step {
-  position: relative;
-  padding-top: clamp(20px, 2vw, 28px);
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.sprint-day {
-  font-family: var(--sans);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  font-size: clamp(13px, 1vw, 14px);
-  text-transform: uppercase;
-  color: var(--accent);
-}
-.sprint-phase {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
-.sprint-note {
-  font-size: clamp(14px, 1.05vw, 15.5px);
-  line-height: 1.45;
-  color: var(--muted);
-}
-
 /* =========================================================
    WHAT WE DO
    ========================================================= */
@@ -1059,15 +1021,6 @@ html.js [data-reveal-heading].is-visible {
   .approach-title {
     font-size: 43px;
     line-height: 0.79;
-  }
-
-  .sprint {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .sprint-step {
-    padding-block: 22px;
   }
 
   .services {

@@ -224,10 +224,8 @@ export default function Home() {
         </section>
 
         {/* ================= APPROACH ================= */}
-        {/* The methodology slot. Big serif pointed at the 14-day claim, then a
-            sprint timeline that diagrams the process — days mapped to stages,
-            not abstract decoration. Same velocity argument as the FAQ entry,
-            phrased for this section. */}
+        {/* The methodology slot. Big serif pointed at the 14-day claim. Same
+            velocity argument as the FAQ entry, phrased for this section. */}
         <section className="approach" id="approach" aria-labelledby="approach-title">
           <div className="container">
             <p className="approach-kicker" data-reveal>How we work</p>
@@ -240,39 +238,8 @@ export default function Home() {
               momentum, so the work never stalls waiting on a handoff.
             </p>
 
-            {/* TODO: optional richer visual timeline graphic. The numbered
-                day-mapped sprint below is the meaningful process diagram. */}
-            <ol className="sprint" data-reveal>
-              <li className="sprint-step">
-                <span className="sprint-day">Days 1&ndash;3</span>
-                <span className="sprint-phase">Kickoff &amp; direction</span>
-                <span className="sprint-note">
-                  Positioning, the launch angle, and the one idea everything
-                  hangs on.
-                </span>
-              </li>
-              <li className="sprint-step">
-                <span className="sprint-day">Days 4&ndash;9</span>
-                <span className="sprint-phase">Build</span>
-                <span className="sprint-note">
-                  Identity, site, and launch assets in tight daily loops.
-                </span>
-              </li>
-              <li className="sprint-step">
-                <span className="sprint-day">Days 10&ndash;13</span>
-                <span className="sprint-phase">Launch prep</span>
-                <span className="sprint-note">
-                  Polish, QA, and the momentum plan for launch week.
-                </span>
-              </li>
-              <li className="sprint-step">
-                <span className="sprint-day">Day 14</span>
-                <span className="sprint-phase">Launch</span>
-                <span className="sprint-note">
-                  Ship the moment the market can&apos;t ignore.
-                </span>
-              </li>
-            </ol>
+            {/* TODO: optional process-diagram visual for the sprint. Left as
+                strong type-on-claim until a meaningful graphic is built. */}
           </div>
         </section>
 
@@ -443,7 +410,9 @@ export default function Home() {
             <a className="footer-legal-link" href="#faq">Privacy Policy</a>
           </div>
 
-          <p className="footer-ghost" aria-hidden="true">fellwind</p>
+          {/* Big-type device kept, but aimed at the brand's claim, not its
+              own name — scale pointed at a fact. */}
+          <p className="footer-ghost" aria-hidden="true">14 days.</p>
         </div>
       </footer>
     </>
