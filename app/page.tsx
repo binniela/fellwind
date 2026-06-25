@@ -186,7 +186,7 @@ export default function Home() {
                   not quarters.
                 </p>
                 <div className="cta-group">
-                  <CtaButton>Book a free call</CtaButton>
+                  <CtaButton>Book a call</CtaButton>
                 </div>
               </div>
             </div>
@@ -197,6 +197,10 @@ export default function Home() {
         <section className="proof" aria-label="Results and trusted clients">
           <div className="container">
             <ul className="metrics" data-reveal>
+              <li className="metric metric-lead">
+                <span className="metric-num">14 days</span>
+                <span className="metric-label">from kickoff to launch</span>
+              </li>
               <li className="metric">
                 <span className="metric-num">120+</span>
                 <span className="metric-label">launches shipped</span>
@@ -209,35 +213,41 @@ export default function Home() {
                 <span className="metric-num">2.4×</span>
                 <span className="metric-label">avg. launch-week traffic lift</span>
               </li>
-              <li className="metric">
-                <span className="metric-num">14 days</span>
-                <span className="metric-label">from kickoff to launch</span>
-              </li>
             </ul>
             <div className="logos" data-reveal>
               <span className="logos-label" id="logos-label">Trusted by teams at</span>
               <div className="logos-marquee" aria-labelledby="logos-label">
                 <ul className="logos-track">
-                  <li>Northbeam</li>
-                  <li>Lumen</li>
-                  <li>Kestrel</li>
-                  <li>Halonyx</li>
-                  <li>Verda</li>
                   <li>
                     <a href="https://cesello.org/" target="_blank" rel="noreferrer">
                       Cesello
                     </a>
                   </li>
+                  <li>
+                    <a href="https://www.epoxycoatingco.com/" target="_blank" rel="noreferrer">
+                      Socal Floor Coatings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.praxisot.app/" target="_blank" rel="noreferrer">
+                      Praxisot
+                    </a>
+                  </li>
                 </ul>
                 <ul className="logos-track" aria-hidden="true">
-                  <li>Northbeam</li>
-                  <li>Lumen</li>
-                  <li>Kestrel</li>
-                  <li>Halonyx</li>
-                  <li>Verda</li>
                   <li>
                     <a href="https://cesello.org/" tabIndex={-1}>
                       Cesello
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.epoxycoatingco.com/" tabIndex={-1}>
+                      Socal Floor Coatings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.praxisot.app/" tabIndex={-1}>
+                      Praxisot
                     </a>
                   </li>
                 </ul>
@@ -285,13 +295,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="creatives-foot" data-reveal>
-              <p className="copy">
-                We pair strategy, identity, and digital craft so every launch
-                feels precise, ownable, and hard to ignore.
-              </p>
-              <a className="text-link" href="#work">+ View All</a>
-            </div>
           </div>
         </section>
 
@@ -450,7 +453,7 @@ export default function Home() {
           </div>
 
           <div className="footer-mid">
-            <a className="footer-start" href="#contact">Get Started</a>
+            <a className="footer-start" href="#contact">Book a call</a>
           </div>
 
           <div className="footer-bottom">

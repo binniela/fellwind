@@ -12,8 +12,17 @@ const LINKS = [
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
+
+  // Sticky nav condenses + frosts once the user leaves the very top.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close on Escape; restore focus to the toggle. Move focus into the
   // panel on open so keyboard/SR users land on the menu.
@@ -39,7 +48,7 @@ export default function SiteNav() {
   }, [open]);
 
   return (
-    <header className="site-nav">
+    <header className={`site-nav${scrolled ? " is-scrolled" : ""}`}>
       <div className="container nav-inner">
         <a className="wordmark" href="#top">Fellwind</a>
 

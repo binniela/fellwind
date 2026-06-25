@@ -166,7 +166,7 @@ export default function ContactForm() {
 
       <p className="booking-outcome">We&apos;ll reply with two available times.</p>
       <button type="submit" className="btn btn-primary booking-submit" disabled={status === "submitting"}>
-        <span>{status === "submitting" ? "Sending…" : "Book my free call"}</span>
+        <span>{status === "submitting" ? "Sending…" : "Book a call"}</span>
         {status !== "submitting" && (
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
