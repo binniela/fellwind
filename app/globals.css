@@ -2210,8 +2210,12 @@ textarea:focus-visible {
 }
 
 .footer-glasses-img {
-  object-fit: contain;
-  object-position: center;
+  position: absolute;
+  inset: 0;
+  background-image: url(/assets/img/footer-glasses-trim.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   pointer-events: none;
   user-select: none;
   /* Frame sits ON TOP of the content so the opaque white rims occlude any

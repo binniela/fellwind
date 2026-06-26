@@ -430,15 +430,9 @@ export default function Home() {
           background shows through the lenses. */}
       <footer className="footer footer--glasses">
         <div className="footer-stage">
-          <Image
-            className="footer-glasses-img"
-            src={FOOTER_GLASSES_SRC}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="100vw"
-            priority={false}
-          />
+          {/* Decorative frame served straight from /public as a CSS background
+              (no next/image optimizer dependency, so it can't 404 in prod). */}
+          <div className="footer-glasses-img" aria-hidden="true" />
 
           {/* LEFT lens — brand, contact, socials */}
           <div className="footer-lens footer-lens--left">
