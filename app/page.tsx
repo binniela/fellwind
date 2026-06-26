@@ -10,7 +10,7 @@ const HERO_IMAGE_SRC = "/assets/img/hero-three-figures.png";
 const LATEST_PROJECTS_IMAGE_SRC = "/assets/img/latest-projects.jpg";
 const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
 const CLIENTS_PHOTO_SRC = "/assets/img/testimonial-listening.png";
-const FOOTER_GLASSES_SRC = "/assets/img/footer-glasses.png";
+const FOOTER_GLASSES_SRC = "/assets/img/footer-glasses-trim.png";
 
 // One primary action for the whole page: booking a call.
 const BOOKING_HREF = "#contact";
@@ -360,8 +360,9 @@ export default function Home() {
                 <i className="active" /><i /><i />
               </div>
             </div>
-            {/* Transparent PNG cutout — no box; the figure floats on the page
-                and the cupped hand spills out past the column edge. */}
+            {/* Whole image, never cropped on his arm: rendered at natural ratio,
+                anchored bottom-left and bled off the right edge so only his face
+                runs off-screen while the entire arm stays in frame. */}
             <div className="clients-photo" data-reveal>
               <Image
                 className="clients-cutout"
@@ -371,7 +372,7 @@ export default function Home() {
                 height={925}
                 quality={90}
                 loading="lazy"
-                sizes="(max-width: 860px) 100vw, 1100px"
+                sizes="(max-width: 860px) 100vw, 85vw"
               />
             </div>
           </div>

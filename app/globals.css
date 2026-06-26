@@ -563,7 +563,7 @@ input:focus-visible {
   letter-spacing: -0.01em;
 }
 .clients-quote {
-  margin-top: clamp(22px, 3vw, 36px);
+  margin: clamp(22px, 3vw, 36px) 0 0;   /* drop the default blockquote inline margin */
   max-width: 30ch;
   font-size: clamp(15px, 1.4vw, 18px);
   line-height: 1.55;
@@ -572,25 +572,25 @@ input:focus-visible {
 .clients-attrib { margin-top: clamp(18px, 2.4vw, 28px); font-size: 14px; line-height: 1.5; }
 .clients-attrib b { color: var(--ink); font-weight: 600; }
 .clients-attrib span { color: var(--muted); }
-.dots { display: flex; gap: 9px; margin-top: clamp(18px, 2.4vw, 26px); }
+.dots { display: flex; gap: 12px; margin-top: clamp(22px, 2.8vw, 34px); }
 .dots i {
-  width: 8px; height: 8px; border-radius: 50%;
+  width: 11px; height: 11px; border-radius: 50%;
   background: var(--block-mid);
   transition: background 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
 .dots i.active { background: var(--accent); }
 .dots:hover i.active { transform: scale(1.15); }
-/* Unboxed cutout — transparent PNG, no frame, figure may overflow. */
+/* Unboxed figure — transparent PNG, no frame; whole image, no crop. */
 .clients-photo {
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 5;
   background: transparent;
 }
 .clients-cutout {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
   filter: grayscale(1) contrast(1.04);
 }
 
@@ -860,13 +860,14 @@ html.js [data-reveal-heading].is-visible {
 
   /* Copy left (inset to the page gutter), photo bleeds to the right edge. */
   .clients-grid {
-    grid-template-columns: minmax(0, 1fr) 46vw;
-    align-items: center;
-    column-gap: clamp(36px, 4vw, 80px);
-    min-height: min(88vh, 960px);
+    grid-template-columns: minmax(0, 1fr) 56vw;
+    align-items: stretch;
+    column-gap: clamp(20px, 2vw, 40px);
+    min-height: min(76vh, 720px);
   }
 
   .clients-copy {
+    align-self: center;
     padding-top: 0;
     padding-right: 0;
     /* align the left edge with the 84vw centred container used elsewhere */
@@ -874,15 +875,18 @@ html.js [data-reveal-heading].is-visible {
   }
 
   .clients-title {
-    font-size: clamp(56px, 6.6vw, 100px);
+    font-size: clamp(52px, 6vw, 92px);
     line-height: 0.9;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    white-space: nowrap;   /* hold the exact "What our / customers say" break */
   }
 
   .clients-quote {
-    max-width: 34ch;
-    margin-top: clamp(28px, 2.6vw, 40px);
-    font-size: clamp(17px, 1.35vw, 20px);
-    line-height: 1.5;
+    max-width: none;
+    margin-top: clamp(30px, 2.8vw, 44px);
+    font-size: clamp(15px, 1.18vw, 17px);
+    line-height: 1.55;
   }
 
   .clients-attrib {
@@ -893,18 +897,21 @@ html.js [data-reveal-heading].is-visible {
   .clients-photo {
     align-self: stretch;
     position: relative;
-    width: 46vw;
+    width: 100%;
     height: 100%;
-    overflow: visible;
+    aspect-ratio: auto;
+    overflow: visible;   /* let the whole image bleed off the right edge */
   }
 
-  /* Figure floats free (no box); face bleeds off the right edge and the
-     cupped hand reaches left, clearing the headline. */
+  /* Whole image, no crop on his body. Sized by HEIGHT so the full figure always
+     fits vertically (head never clipped at the top); anchored bottom-left so the
+     full arm stays in frame, with the width running off the right edge so only
+     his face leaves the screen. */
   .clients-cutout {
     position: absolute;
-    right: -12vw;
-    bottom: 4%;
-    height: 66%;
+    left: 0;
+    bottom: 0;
+    height: 100%;
     width: auto;
     max-width: none;
   }
@@ -2184,20 +2191,22 @@ textarea:focus-visible {
 .footer { position: relative; background: #000; color: #fff; overflow: hidden; }
 
 .footer--glasses {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(24px, 4vw, 64px);
+  /* Footer is exactly the height of the glasses art (the stage), so the
+     frame sits flush at the bottom of the page with no extra black band. */
+  padding: 0;
 }
 
 /* Stage carries the exact aspect ratio of the glasses art so the
-   percentage-positioned lenses line up with the frame openings. */
+   percentage-positioned lenses line up with the frame openings.
+   Spans nearly edge-to-edge so the lens openings are large. */
 .footer-stage {
   position: relative;
   width: 100%;
-  max-width: 1500px;
-  aspect-ratio: 1695 / 928;
+  max-width: min(1840px, 97vw);
+  aspect-ratio: 1616 / 547;
 }
 
 .footer-glasses-img {
@@ -2205,6 +2214,10 @@ textarea:focus-visible {
   object-position: center;
   pointer-events: none;
   user-select: none;
+  /* Frame sits ON TOP of the content so the opaque white rims occlude any
+     overflow (e.g. the Book a call pill); the transparent lenses still reveal
+     the content tucked behind them. */
+  z-index: 2;
 }
 
 /* ---- Lens clusters ---- */
@@ -2218,15 +2231,17 @@ textarea:focus-visible {
   z-index: 1;
 }
 
+/* Lens openings, mapped to the trimmed art (left hole 6.4–42.9%, right hole
+   56.9–93.5% horizontally; both span ~10–92% vertically). */
 .footer-lens--left {
-  left: 11%;
-  width: 25%;
+  left: 9.5%;
+  width: 28%;
   align-items: flex-start;
 }
 
 .footer-lens--right {
-  left: 62.5%;
-  width: 24%;
+  left: 60%;
+  width: 30%;
 }
 
 /* ---- Brand lockup ---- */
@@ -2240,7 +2255,12 @@ textarea:focus-visible {
   color: #fff;
   letter-spacing: -0.01em;
 }
-.footer-brand-slash { color: var(--accent); font-style: italic; }
+.footer-brand-slash {
+  color: var(--accent);
+  font-family: var(--sans);
+  font-weight: 800;
+  font-style: normal;
+}
 
 /* ---- Contact ---- */
 .footer-contact {
@@ -2317,11 +2337,8 @@ textarea:focus-visible {
 
 /* ---- Blurb ---- */
 .footer-blurb {
-  /* The oval lens can't hold the blurb without crowding the corners, so it
-     is reserved for the stacked mobile footer (shown again below 860px). */
-  display: none;
-  max-width: 26ch;
-  margin: clamp(12px, 1.2vw, 18px) 0 0;
+  max-width: 30ch;
+  margin: clamp(14px, 1.4vw, 22px) 0 0;
   font-size: clamp(12px, 0.85vw, 14px);
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.62);
@@ -2331,15 +2348,15 @@ textarea:focus-visible {
 .footer-baseline {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.4vw, 22px);
+  gap: clamp(10px, 1vw, 16px);
   margin-top: clamp(12px, 1.2vw, 18px);
   padding-top: clamp(10px, 1vw, 16px);
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 .footer-legal-link {
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(11px, 0.85vw, 13px);
+  letter-spacing: 0.03em;
+  font-size: clamp(10px, 0.75vw, 12px);
   color: rgba(255, 255, 255, 0.85);
   white-space: nowrap;
   transition: color 220ms var(--ease-out);
@@ -2353,8 +2370,8 @@ textarea:focus-visible {
   background: #fff;
   color: #000;
   border-radius: 999px;
-  padding: 0.7em 1.4em;
-  font-size: clamp(13px, 0.95vw, 15px);
+  padding: 0.62em 1.2em;
+  font-size: clamp(12px, 0.85vw, 14px);
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
