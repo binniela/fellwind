@@ -12,6 +12,19 @@ const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
 const CLIENTS_PHOTO_SRC = "/assets/img/testimonial-listening.png";
 const FOOTER_GLASSES_SRC = "/assets/img/footer-glasses-trim.png";
 
+// Services in row-major order so the auto-numbering reads 01 (left), 02 (right),
+// 03 (left), … down the two columns.
+const SERVICES = [
+  { name: "Web Development", desc: "High-performing websites built for growth and scale." },
+  { name: "Branding", desc: "Distinct identities that connect and leave a mark." },
+  { name: "Web Design", desc: "Clean, conversion-focused design that elevates your brand." },
+  { name: "Art Direction", desc: "Visual storytelling that brings ideas to life." },
+  { name: "UI / UX", desc: "Intuitive experiences that users love to interact with." },
+  { name: "Packaging", desc: "Thoughtful packaging that stands out on the shelf." },
+  { name: "Strategy", desc: "Clear plans and positioning that drive real impact." },
+  { name: "Illustration", desc: "Custom illustrations that add character and clarity." },
+];
+
 // One primary action for the whole page: booking a call.
 const BOOKING_HREF = "#contact";
 
@@ -319,20 +332,20 @@ export default function Home() {
               Systems, sites, and launch moments with a distinct point of view.
             </p>
 
-            <div className="services-grid" data-reveal>
-              <ul>
-                <li className="service-row">Web Development</li>
-                <li className="service-row">Web Design</li>
-                <li className="service-row">UI / UX</li>
-                <li className="service-row">Strategy</li>
-              </ul>
-              <ul>
-                <li className="service-row">Branding</li>
-                <li className="service-row">Art Direction</li>
-                <li className="service-row">Packaging</li>
-                <li className="service-row">Illustration</li>
-              </ul>
-            </div>
+            <ul className="services-grid" data-reveal>
+              {SERVICES.map((s, i) => (
+                <li className="service-item" key={s.name}>
+                  <a className="service-link" href="#contact">
+                    <span className="service-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="service-text">
+                      <span className="service-name">{s.name}</span>
+                      <span className="service-desc">{s.desc}</span>
+                    </span>
+                    <span className="service-arrow"><ArrowIcon /></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
           </div>
         </section>
