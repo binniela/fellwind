@@ -320,6 +320,156 @@ input:focus-visible {
 .hero-title, .hero-right { position: relative; z-index: 1; }   /* text above the line */
 
 /* =========================================================
+   ABOUT HERO  (landing) — copy left, cut-out figure right,
+   four-up metrics bar the figure appears to stand on. Sized
+   to fit a single viewport on desktop.
+   ========================================================= */
+.about-hero { position: relative; }
+
+.about-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 5vw, 44px);
+  padding-top: clamp(16px, 3vw, 32px);
+}
+
+.about-eyebrow {
+  margin: 0 0 clamp(16px, 2vw, 24px);
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.about-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(38px, 11vw, 80px);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.about-dot { color: var(--accent); }
+
+.about-lead {
+  margin: clamp(20px, 3vw, 32px) 0 0;
+  max-width: 44ch;
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(26px, 3.4vw, 42px);
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.05vw, 16px);
+  color: var(--ink);
+}
+.about-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  flex: none;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: background 240ms var(--ease-out), color 240ms var(--ease-out),
+    transform 240ms var(--ease-out);
+}
+.about-link-icon svg { width: 20px; height: 20px; }
+.about-link:hover .about-link-icon {
+  background: var(--ink);
+  color: #fff;
+  transform: translate(2px, -2px);
+}
+
+.about-figure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+.about-figure img {
+  object-fit: contain;
+  object-position: center bottom;
+}
+/* soft contact shadow under the standing foot */
+.about-figure::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  bottom: 1%;
+  width: 26%;
+  height: 16px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(22, 22, 22, 0.26), rgba(22, 22, 22, 0) 70%);
+  pointer-events: none;
+}
+
+.about-metrics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+}
+.about-metric {
+  padding: clamp(18px, 2vw, 26px) clamp(14px, 1.6vw, 24px);
+  border-right: 1px solid var(--line);
+}
+.about-metric:nth-child(2n) { border-right: 0; }
+.about-metric-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.about-metric-label {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(13px, 0.95vw, 15px);
+  color: var(--muted);
+}
+
+@media (min-width: 861px) {
+  /* nav height varies with its clamp padding; ~104px at desktop */
+  .about-hero {
+    --about-nav-h: 104px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - var(--about-nav-h));
+  }
+  .about-hero-inner {
+    flex: 1 1 auto;
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+    padding-top: 0;
+    min-height: 0;
+  }
+  .about-title { font-size: clamp(50px, 5.4vw, 84px); max-width: 6.6em; }
+  .about-figure {
+    align-self: stretch;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 0;
+  }
+  .about-figure img { object-fit: cover; object-position: center bottom; }
+  .about-metrics { grid-template-columns: repeat(4, 1fr); }
+  .about-metric { border-right: 1px solid var(--line); }
+  .about-metric:last-child { border-right: 0; }
+}
+
+/* =========================================================
    LATEST PROJECTS
    ========================================================= */
 .latest { padding-block: var(--section-y); }
@@ -2216,12 +2366,11 @@ textarea:focus-visible {
 
 /* =========================================================
    FOOTER - full-screen "spectacles" composition
-   The white frame PNG fills a centred stage; its lenses and
-   background are transparent so the black footer shows through.
-   Two content clusters are positioned inside the left and right
-   lens openings.
+   The white frame PNG fills a centred stage. The page around the
+   frame stays white; two black lens shapes sit behind the content
+   so only the lens interiors read as black panels.
    ========================================================= */
-.footer { position: relative; background: #000; color: #fff; overflow: hidden; }
+.footer { position: relative; background: #fff; color: #fff; overflow: hidden; }
 
 .footer--glasses {
   display: flex;
@@ -2242,6 +2391,29 @@ textarea:focus-visible {
   aspect-ratio: 1616 / 547;
 }
 
+.footer-lens-bg {
+  position: absolute;
+  top: 12.5%;
+  height: 76.5%;
+  background: #000;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-lens-bg--left {
+  left: 7.4%;
+  width: 35.3%;
+  border-radius: 49% 45% 44% 52% / 54% 50% 48% 45%;
+  clip-path: ellipse(50% 47% at 52% 50%);
+}
+
+.footer-lens-bg--right {
+  left: 57.4%;
+  width: 35.3%;
+  border-radius: 45% 52% 51% 46% / 49% 54% 45% 50%;
+  clip-path: ellipse(50% 47% at 48% 50%);
+}
+
 .footer-glasses-img {
   position: absolute;
   inset: 0;
@@ -2260,8 +2432,8 @@ textarea:focus-visible {
 /* ---- Lens clusters ---- */
 .footer-lens {
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: 14%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2271,14 +2443,15 @@ textarea:focus-visible {
 /* Lens openings, mapped to the trimmed art (left hole 6.4–42.9%, right hole
    56.9–93.5% horizontally; both span ~10–92% vertically). */
 .footer-lens--left {
-  left: 9.5%;
-  width: 28%;
+  left: 10.8%;
+  width: 25.8%;
   align-items: flex-start;
 }
 
 .footer-lens--right {
-  left: 60%;
-  width: 30%;
+  left: 61.7%;
+  width: 25.6%;
+  transform: translateY(-4%);
 }
 
 /* ---- Brand lockup ---- */
@@ -2302,10 +2475,10 @@ textarea:focus-visible {
 /* ---- Contact ---- */
 .footer-contact {
   font-style: normal;
-  margin-top: clamp(18px, 2vw, 30px);
+  margin-top: clamp(14px, 1.55vw, 24px);
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.4vw, 20px);
+  gap: clamp(9px, 1vw, 16px);
   font-size: clamp(14px, 1.05vw, 16px);
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.9);
@@ -2322,7 +2495,7 @@ textarea:focus-visible {
 .footer-socials {
   display: flex;
   gap: 12px;
-  margin-top: clamp(18px, 2vw, 30px);
+  margin-top: clamp(14px, 1.55vw, 24px);
 }
 .footer-socials a {
   width: 42px;
@@ -2386,8 +2559,8 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: clamp(10px, 1vw, 16px);
-  margin-top: clamp(12px, 1.2vw, 18px);
-  padding-top: clamp(10px, 1vw, 16px);
+  margin-top: clamp(10px, 1vw, 15px);
+  padding-top: clamp(8px, 0.85vw, 13px);
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 .footer-legal-link {
@@ -2421,6 +2594,7 @@ textarea:focus-visible {
    clean stacked footer with the glasses as a faint backdrop. ---- */
 @media (max-width: 860px) {
   .footer--glasses {
+    background: #000;
     min-height: 0;
     padding: clamp(48px, 12vw, 72px) var(--gutter) clamp(40px, 10vw, 64px);
   }
@@ -2443,6 +2617,9 @@ textarea:focus-visible {
     width: 100% !important;
     left: auto !important;
     justify-content: flex-start;
+  }
+  .footer-lens-bg {
+    display: none;
   }
   .footer-blurb { display: block; }
   .footer-baseline { flex-wrap: wrap; }
@@ -2507,4 +2684,165 @@ textarea:focus-visible {
 .nav-cta.btn-primary:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
+}
+
+/* =========================================================
+   ABOUT HERO - reference composition lockup
+   ========================================================= */
+.about-title span:not(.visually-hidden) {
+  display: block;
+}
+
+.about-title span:last-child {
+  white-space: nowrap;
+}
+
+.about-title span.about-dot {
+  display: inline;
+}
+
+@media (min-width: 861px) {
+  .about-hero {
+    --about-nav-h: 79px;
+    min-height: calc(100svh - var(--about-nav-h));
+  }
+
+  .about-hero-inner {
+    max-width: none;
+    min-height: calc(100svh - var(--about-nav-h) - 172px);
+    grid-template-columns: 45.8vw 1fr;
+    gap: 3vw;
+    padding-inline: 7.9vw 4.35vw;
+    align-items: stretch;
+  }
+
+  .about-copy {
+    align-self: center;
+    transform: translateY(-5.1vh);
+  }
+
+  .about-eyebrow {
+    margin-bottom: 15px;
+    font-size: 12px;
+    letter-spacing: 0.095em;
+  }
+
+  .about-title {
+    max-width: 7.25em;
+    font-size: clamp(62px, 5.85vw, 92px);
+    line-height: 0.965;
+    letter-spacing: -0.035em;
+  }
+
+  .about-lead {
+    margin-top: 44px;
+    max-width: 47ch;
+    font-size: clamp(15px, 1.05vw, 18px);
+    line-height: 1.58;
+  }
+
+  .about-link {
+    margin-top: 38px;
+    gap: 18px;
+    font-size: clamp(15px, 1.05vw, 17px);
+  }
+
+  .about-link-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .about-figure {
+    align-self: end;
+    justify-self: end;
+    width: min(49.6vw, 820px);
+    height: min(76.8vh, 870px);
+    min-height: 0;
+    margin-bottom: -28px;
+    overflow: visible;
+    position: relative;
+    right: 165px;
+    top: 29px;
+    z-index: 2;
+  }
+
+  .about-figure img {
+    object-fit: contain;
+    object-position: 50% 100%;
+    transform: scale(0.99);
+    transform-origin: 100% 100%;
+  }
+
+  .about-figure::before {
+    content: "";
+    position: absolute;
+    left: 29%;
+    bottom: 1px;
+    width: 55%;
+    height: 34px;
+    transform: translateX(-50%) rotate(-3deg);
+    background: radial-gradient(ellipse at center, rgba(22, 22, 22, 0.16), rgba(22, 22, 22, 0) 72%);
+    filter: blur(4px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .about-figure::after {
+    left: 31%;
+    bottom: 0;
+    width: 24%;
+    height: 16px;
+    opacity: 0.78;
+  }
+
+  .about-metrics {
+    min-height: 172px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-metric {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 38px 7.9vw 18px;
+  }
+
+  .about-metric:not(:first-child) {
+    padding-left: 4.4vw;
+  }
+
+  .about-metric-num {
+    font-size: clamp(46px, 3.25vw, 58px);
+    line-height: 0.92;
+  }
+
+  .about-metric-label {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .about-hero-inner {
+    grid-template-columns: 46.2vw 1fr;
+    padding-inline: 7.9vw 4.6vw;
+  }
+
+  .about-title {
+    font-size: clamp(76px, 5.75vw, 104px);
+  }
+
+  .about-figure {
+    width: min(50.2vw, 860px);
+    height: min(76.8vh, 890px);
+  }
+}
+
+@media (max-width: 860px) {
+  .about-title span:not(.visually-hidden) {
+    display: inline;
+  }
 }

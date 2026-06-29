@@ -6,11 +6,13 @@ import RevealEffects from "./reveal-effects";
 import SiteNav from "./site-nav";
 import ContactForm from "./contact-form";
 
-const HERO_IMAGE_SRC = "/assets/img/hero-three-figures.png";
-const LATEST_PROJECTS_IMAGE_SRC = "/assets/img/latest-projects.jpg";
-const TESTIMONIAL_IMAGE_SRC = "/assets/img/testimonial.jpg";
+const ABOUT_FIGURE_SRC = "/assets/img/about-man-frame.png";
+const PROJECT_NORTHBEAM_SRC = "/assets/img/project-northbeam.png";
+const PROJECT_LUMEN_SRC = "/assets/img/project-lumen.png";
+const PROJECT_KESTREL_SRC = "/assets/img/project-kestrel.png";
+const PROJECT_HALONYX_SRC = "/assets/img/project-halonyx.png";
+const PROJECT_VERDA_SRC = "/assets/img/project-verda.png";
 const CLIENTS_PHOTO_SRC = "/assets/img/testimonial-listening.png";
-const FOOTER_GLASSES_SRC = "/assets/img/footer-glasses-trim.png";
 
 // Services in row-major order so the auto-numbering reads 01 (left), 02 (right),
 // 03 (left), … down the two columns.
@@ -25,9 +27,6 @@ const SERVICES = [
   { name: "Illustration", desc: "Custom illustrations that add character and clarity." },
 ];
 
-// One primary action for the whole page: booking a call.
-const BOOKING_HREF = "#contact";
-
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -36,20 +35,11 @@ function ArrowIcon() {
   );
 }
 
-function CtaButton({
-  children,
-  className = "",
-  href = BOOKING_HREF,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  href?: string;
-}) {
+function ArrowUpRightIcon() {
   return (
-    <a className={`btn btn-primary ${className}`.trim()} href={href}>
-      <span>{children}</span>
-      <ArrowIcon />
-    </a>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 17 17 7M8 7h9v9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -124,75 +114,64 @@ export default function Home() {
       <SiteNav />
 
       <main id="top">
-        {/* ================= HERO ================= */}
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="container hero-grid">
-            {/* Layout-drawn rope: stops at the nav rule and runs down toward
-                the next section behind the transparent figure. */}
-            {/* One layout-drawn rope per figure; positioned in JS so each stays
-                locked to its lady's grip, the nav rule, and the metrics row. */}
-            <svg className="hero-diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-reveal style={{ "--reveal-delay": "260ms" } as React.CSSProperties}>
-              {/* Ropes thicken left-to-right to echo the figures fading in from
-                  light to dark: thin (light lady) -> thicker (mid) -> thickest. */}
-              <line className="hero-rope" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-              <line className="hero-rope" stroke="var(--line)" strokeWidth="1.7" vectorEffect="non-scaling-stroke" />
-              <line className="hero-rope" stroke="var(--line)" strokeWidth="2.6" vectorEffect="non-scaling-stroke" />
-            </svg>
+        {/* ================= HERO (About) ================= */}
+        {/* Landing hero sized to one viewport: copy left, cut-out figure right,
+            and a four-up metrics bar the figure appears to stand on. */}
+        <section className="about-hero" id="about" aria-labelledby="about-title">
+          <div className="container about-hero-inner">
+            <div className="about-copy">
+              <p className="about-eyebrow" data-reveal>About Fellwind</p>
+              <h1 className="about-title" id="about-title" data-reveal style={{ "--reveal-delay": "90ms" } as React.CSSProperties}>
+                <span className="visually-hidden">Fellwind. </span>
+                <span>We build</span>
+                <span>brands with</span>
+                <span>point of view<span className="about-dot">.</span></span>
+              </h1>
+              <p className="about-lead" data-reveal style={{ "--reveal-delay": "170ms" } as React.CSSProperties}>
+                Fellwind is a digital agency focused on strategy, design, and
+                development. We partner with ambitious brands to create clarity,
+                momentum, and meaningful impact.
+              </p>
+              <a className="about-link" href="#faq" data-reveal style={{ "--reveal-delay": "250ms" } as React.CSSProperties}>
+                <span className="about-link-icon" aria-hidden="true"><ArrowUpRightIcon /></span>
+                Learn more about our approach
+              </a>
+            </div>
 
-            <h1 className="hero-title" id="hero-title" data-reveal style={{ "--reveal-delay": "110ms" } as React.CSSProperties}>
-              <span className="visually-hidden">Fellwind, </span>
-              <span className="hero-kicker">For sharp products with forgettable launches</span>
-              <span className="line">Launches</span>
-              <span className="line">the market</span>
-              <span className="line">can&apos;t</span>
-              <span className="line">ignore</span>
-            </h1>
-
-            <div className="hero-right">
-              <div className="image-slot hero-photo" data-reveal style={{ "--reveal-delay": "190ms" } as React.CSSProperties}>
-                <Image
-                  src={HERO_IMAGE_SRC}
-                  alt="Three Fellwind figures in oversized black suits hauling taut diagonal lines, building momentum left to right"
-                  fill
-                  priority
-                  sizes="(max-width: 860px) 55vw, 50vw"
-                />
-              </div>
-              <div className="hero-foot" data-reveal style={{ "--reveal-delay": "310ms" } as React.CSSProperties}>
-                <p className="copy">
-                  We build identity systems and launch worlds that turn sharp
-                  products into the thing everyone&apos;s talking about in weeks,
-                  not quarters.
-                </p>
-                <div className="cta-group">
-                  <CtaButton>Book a call</CtaButton>
-                </div>
-              </div>
+            <div className="about-figure" data-reveal style={{ "--reveal-delay": "140ms" } as React.CSSProperties}>
+              <Image
+                src={ABOUT_FIGURE_SRC}
+                alt="A Fellwind creative in a tailored black suit holding a framed square to their face"
+                fill
+                priority
+                sizes="(max-width: 860px) 70vw, 46vw"
+              />
             </div>
           </div>
+
+          <ul className="about-metrics" data-reveal style={{ "--reveal-delay": "320ms" } as React.CSSProperties}>
+            <li className="about-metric">
+              <span className="about-metric-num">12+</span>
+              <span className="about-metric-label">Years of experience</span>
+            </li>
+            <li className="about-metric">
+              <span className="about-metric-num">80+</span>
+              <span className="about-metric-label">Projects delivered</span>
+            </li>
+            <li className="about-metric">
+              <span className="about-metric-num">30+</span>
+              <span className="about-metric-label">Industry awards</span>
+            </li>
+            <li className="about-metric">
+              <span className="about-metric-num">98%</span>
+              <span className="about-metric-label">Client satisfaction</span>
+            </li>
+          </ul>
         </section>
 
         {/* ================= PROOF / TRUST ================= */}
-        <section className="proof" aria-label="Results and trusted clients">
+        <section className="proof" aria-label="Trusted clients">
           <div className="container">
-            <ul className="metrics" data-reveal>
-              <li className="metric metric-lead">
-                <span className="metric-num">14 days</span>
-                <span className="metric-label">from kickoff to launch</span>
-              </li>
-              <li className="metric">
-                <span className="metric-num">120+</span>
-                <span className="metric-label">launches shipped</span>
-              </li>
-              <li className="metric">
-                <span className="metric-num">4.9/5</span>
-                <span className="metric-label">average client rating</span>
-              </li>
-              <li className="metric">
-                <span className="metric-num">2.4×</span>
-                <span className="metric-label">avg. launch-week traffic lift</span>
-              </li>
-            </ul>
             <div className="logos" data-reveal>
               <span className="logos-label" id="logos-label">Trusted by teams at</span>
               <div className="logos-row" aria-labelledby="logos-label">
@@ -244,7 +223,7 @@ export default function Home() {
             <article className="feature" data-reveal>
               <div className="image-slot feature-media">
                 <Image
-                  src={LATEST_PROJECTS_IMAGE_SRC}
+                  src={PROJECT_NORTHBEAM_SRC}
                   alt="Northbeam — growth platform brand and launch system by Fellwind"
                   fill
                   loading="lazy"
@@ -277,7 +256,7 @@ export default function Home() {
               <li className="proj-card">
                 <div className="image-slot proj-card-media">
                   <Image
-                    src={TESTIMONIAL_IMAGE_SRC}
+                    src={PROJECT_LUMEN_SRC}
                     alt="Lumen brand experience by Fellwind"
                     fill
                     loading="lazy"
@@ -292,7 +271,15 @@ export default function Home() {
                 </a>
               </li>
               <li className="proj-card">
-                <div className="image-slot proj-card-media is-placeholder" aria-hidden="true" />
+                <div className="image-slot proj-card-media">
+                  <Image
+                    src={PROJECT_KESTREL_SRC}
+                    alt="Kestrel product website by Fellwind"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 860px) 50vw, 21vw"
+                  />
+                </div>
                 <a className="proj-card-foot" href="#work">
                   <span className="proj-num">03</span>
                   <span className="proj-card-name">Kestrel</span>
@@ -301,7 +288,15 @@ export default function Home() {
                 </a>
               </li>
               <li className="proj-card">
-                <div className="image-slot proj-card-media is-placeholder" aria-hidden="true" />
+                <div className="image-slot proj-card-media">
+                  <Image
+                    src={PROJECT_HALONYX_SRC}
+                    alt="Halonyx digital identity website by Fellwind"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 860px) 50vw, 21vw"
+                  />
+                </div>
                 <a className="proj-card-foot" href="#work">
                   <span className="proj-num">04</span>
                   <span className="proj-card-name">Halonyx</span>
@@ -310,7 +305,15 @@ export default function Home() {
                 </a>
               </li>
               <li className="proj-card">
-                <div className="image-slot proj-card-media is-placeholder" aria-hidden="true" />
+                <div className="image-slot proj-card-media">
+                  <Image
+                    src={PROJECT_VERDA_SRC}
+                    alt="Verda web platform by Fellwind"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 860px) 50vw, 21vw"
+                  />
+                </div>
                 <a className="proj-card-foot" href="#work">
                   <span className="proj-num">05</span>
                   <span className="proj-card-name">Verda</span>
@@ -437,12 +440,13 @@ export default function Home() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      {/* Full-screen black footer with the white spectacle frame filling the
-          stage; the two content clusters sit inside the left and right lenses.
-          The glasses PNG is transparent except for the frame, so the black
-          background shows through the lenses. */}
+      {/* White footer stage with black lens interiors and the marble spectacle
+          frame layered above the content. */}
       <footer className="footer footer--glasses">
         <div className="footer-stage">
+          <div className="footer-lens-bg footer-lens-bg--left" aria-hidden="true" />
+          <div className="footer-lens-bg footer-lens-bg--right" aria-hidden="true" />
+
           {/* Decorative frame served straight from /public as a CSS background
               (no next/image optimizer dependency, so it can't 404 in prod). */}
           <div className="footer-glasses-img" aria-hidden="true" />
